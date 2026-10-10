@@ -150,3 +150,15 @@
 .settings-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); background: #166645; color: white; padding: 14px 20px; border-radius: 10px; box-shadow: 0 5px 25px #0003; z-index: 50; }
 @media(max-width:420px) { .settings-dialog { padding: 20px; } .settings-row { grid-template-columns: 1fr; gap: 0; } }
 @media print { .settings-dialog, .settings-toast { display: none !important; } }
+
+/* 13. LABORATORIO Y FICHA · ventanas flotantes, ocultas hasta abrirlas. */
+.resource-dialog { width: min(1000px, calc(100% - 24px)); max-height: calc(100dvh - 32px); overflow-y: auto; border: 1px solid #d2e1ee; border-radius: 18px; padding: 20px; color: var(--ink); background: #f6f8fb; box-shadow: 0 24px 80px #0005; }
+.resource-dialog:not([open]) { display: none; }
+.resource-dialog::backdrop { background: #15233799; }
+.resource-dialog-actions { display: flex; justify-content: flex-end; gap: 12px; position: sticky; top: 0; background: #f6f8fb; padding-bottom: 12px; z-index: 1; }
+.resource-dialog-actions button { border: 1px solid #b4cadc; border-radius: 8px; padding: 9px 14px; background: white; color: #174f7c; }
+.resource-dialog .lab, .resource-dialog .worksheet { margin: 0; }
+#configurar-datos { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; font-size: 23px; }
+#configurar-datos span { margin: 0; }
+@media(max-width:600px) { .resource-dialog { padding: 12px; } .resource-dialog .lab { grid-template-columns: 1fr; } }
+@media print { .resource-dialog, .resource-dialog::backdrop { display: none !important; } }
