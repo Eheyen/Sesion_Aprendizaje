@@ -162,3 +162,20 @@
 #configurar-datos span { margin: 0; }
 @media(max-width:600px) { .resource-dialog { padding: 12px; } .resource-dialog .lab { grid-template-columns: 1fr; } }
 @media print { .resource-dialog, .resource-dialog::backdrop { display: none !important; } }
+
+/* 14. EJERCICIO VISUAL · pares de unidades iguales, sin revelar la respuesta. */
+.equivalence-exercises { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 12px; }
+.equivalence-exercise { border: 1px solid #bdcbd7; border-radius: 8px; padding: 10px; break-inside: avoid; }
+.visual-pair { display: grid; grid-template-columns: minmax(0,1fr) 18px minmax(0,1fr); gap: 5px; align-items: start; text-align: center; }
+.visual-pair svg { display: block; width: 100%; height: auto; margin-bottom: 8px; }
+.visual-pair .fraction { font-size: 16px; }
+.visual-equals { font-size: 20px; line-height: 1; }
+.equivalence-exercise p { font-size: 10px; margin-top: 10px; text-align: center; }
+@media(max-width:600px) { .equivalence-exercises { grid-template-columns: 1fr; } .visual-pair { max-width: 300px; margin-inline: auto; } }
+@media print {
+  .equivalence-exercises { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2mm; margin-top: 2mm; }
+  .equivalence-exercise { padding: 2mm; border-radius: 0; }
+  .visual-pair .fraction { font-size: 10pt; }
+  .equivalence-exercise p { font-size: 7pt; margin-top: 2mm; }
+  .visual-pair svg { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
