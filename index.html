@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sesión de aprendizaje de matemática: descubre las fracciones equivalentes con actividades y un simulador visual.">
   <title>Fracciones equivalentes | Sesión de aprendizaje</title>
-  <link rel="stylesheet" href="styles.css?v=pizzas-2">
-  <script src="app.js?v=configuracion-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=modales-recursos-1">
+  <script src="app.js?v=modales-recursos-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -14,7 +14,7 @@
 <header class="hero">
   <nav class="topbar wrap" aria-label="Navegación principal">
     <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a>
-    <button class="print-button" id="configurar-datos" type="button" aria-haspopup="dialog">⚙ Configurar datos</button>
+    <button class="print-button" id="configurar-datos" type="button" aria-haspopup="dialog" aria-label="Configurar datos de la sesión" title="Configurar datos"><span aria-hidden="true">⚙</span></button>
     <button class="print-button" id="imprimir" type="button">Imprimir / Guardar PDF <span aria-hidden="true">↗</span></button>
   </nav>
   <div class="hero-body wrap">
@@ -137,24 +137,27 @@
           <p class="muted">Podemos usar círculos, barras y tablas para verificar el resultado.</p>
         <details class="learning-resource"><summary>▶ Video: Fracciones equivalentes</summary><div class="resource-body"><p>Observa un ejemplo y pausa. Construye 2/3 = 4/6 con dos barras iguales. Usa como máximo 3 minutos de reproducción dentro de los 10 minutos de la actividad; prioriza resolver y explicar.</p><iframe class="lesson-video" src="https://www.youtube-nocookie.com/embed/osePKL39EBo" title="Fracciones equivalentes" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><a class="text-link" href="https://www.youtube.com/watch?v=osePKL39EBo" target="_blank" rel="noopener noreferrer">Abrir video en YouTube ↗</a></div></details></article>
         <article class="activity"><div class="activity-heading"><span>2.3</span><h3>Exploramos con tecnología</h3><small>15 min</small></div>
-          <p>Usa el laboratorio de abajo para comprobar tus predicciones y completar el ejercicio 3. Trabaja con este laboratorio o con PhET, sin repetir la actividad en ambos.</p>
-          <a class="text-link" href="#laboratorio">Abrir nuestro laboratorio <span aria-hidden="true">↓</span></a>
+          <p>Abre el laboratorio para comprobar tus predicciones y completar el ejercicio 3. Trabaja con este laboratorio o con PhET, sin repetir la actividad en ambos.</p>
+          <a class="text-link" href="#laboratorio" data-open-resource="laboratorio-dialog" aria-haspopup="dialog">Abrir nuestro laboratorio <span aria-hidden="true">↓</span></a>
           <a class="resource-link" href="https://phet.colorado.edu/es/simulations/build-a-fraction" target="_blank" rel="noopener noreferrer">Recurso adicional: PhET · Construye una fracción ↗</a>
-        <details class="learning-resource"><summary>☷ Guía del simulador</summary><div class="resource-body"><ol><li>Representa 1/2 y 2/4. Compara las áreas.</li><li>Cambia a 2/3 y 4/6.</li><li>Prueba 1/2 y 3/4. Explica por qué no son equivalentes.</li><li>Encuentra otra pareja equivalente y regístrala en la ficha.</li></ol><p>Usa el laboratorio de esta página o el recurso PhET. La conexión es necesaria para abrir los recursos externos.</p><a class="text-link" href="#laboratorio">Ir al laboratorio ↓</a></div></details></article>
-        <article class="activity"><div class="activity-heading"><span>2.4</span><h3>Aprendemos en equipo</h3><small>10 min</small></div><ul class="checklist"><li>Completen los ejercicios 4 y 5 de la ficha por parejas.</li><li>Justifiquen la respuesta al reto con un gráfico y un cálculo.</li><li>Compartan y revisen una explicación.</li><li>El docente observa con la lista de cotejo y orienta la corrección de errores.</li></ul><details class="learning-resource"><summary>✎ Tarjetas de trabajo en parejas</summary><div class="resource-body"><p>Si terminan la ficha, elijan una tarjeta de ampliación. Una persona explica y la otra comprueba; luego intercambian roles.</p><ol><li>Completen: 1/3 = __/6.</li><li>Comprueben: ¿2/4 y 3/6 son equivalentes?</li><li>Refuten con un dibujo: «Si sumo 1 a ambos términos, siempre obtengo una fracción equivalente».</li></ol><a class="text-link" href="#ficha-trabajo">Abrir ficha de trabajo ↓</a></div></details></article>
+        <details class="learning-resource"><summary>☷ Guía del simulador</summary><div class="resource-body"><ol><li>Representa 1/2 y 2/4. Compara las áreas.</li><li>Cambia a 2/3 y 4/6.</li><li>Prueba 1/2 y 3/4. Explica por qué no son equivalentes.</li><li>Encuentra otra pareja equivalente y regístrala en la ficha.</li></ol><p>Usa el laboratorio de esta página o el recurso PhET. La conexión es necesaria para abrir los recursos externos.</p><a class="text-link" href="#laboratorio" data-open-resource="laboratorio-dialog" aria-haspopup="dialog">Ir al laboratorio ↓</a></div></details></article>
+        <article class="activity"><div class="activity-heading"><span>2.4</span><h3>Aprendemos en equipo</h3><small>10 min</small></div><ul class="checklist"><li>Completen los ejercicios 4 y 5 de la ficha por parejas.</li><li>Justifiquen la respuesta al reto con un gráfico y un cálculo.</li><li>Compartan y revisen una explicación.</li><li>El docente observa con la lista de cotejo y orienta la corrección de errores.</li></ul><details class="learning-resource"><summary>✎ Tarjetas de trabajo en parejas</summary><div class="resource-body"><p>Si terminan la ficha, elijan una tarjeta de ampliación. Una persona explica y la otra comprueba; luego intercambian roles.</p><ol><li>Completen: 1/3 = __/6.</li><li>Comprueben: ¿2/4 y 3/6 son equivalentes?</li><li>Refuten con un dibujo: «Si sumo 1 a ambos términos, siempre obtengo una fracción equivalente».</li></ol><a class="text-link" href="#ficha-trabajo" data-open-resource="ficha-trabajo-dialog" aria-haspopup="dialog">Abrir ficha de trabajo ↓</a></div></details></article>
       </div>
     </section>
     <section class="phase phase-end" id="cierre" aria-labelledby="titulo-cierre">
       <header class="phase-header"><div><span class="phase-number">03</span><h2 id="titulo-cierre">Cierre</h2></div><span>◷ 20 min</span></header>
       <div class="phase-content">
         <article class="activity"><div class="activity-heading"><span>3.1</span><h3>Ordenamos nuestras ideas</h3><small>10 min</small></div><ol class="takeaways"><li>Una fracción representa partes iguales de una unidad.</li><li>Dos fracciones equivalentes expresan la misma cantidad.</li><li>Las figuras y los procedimientos numéricos nos ayudan a justificarlo.</li></ol><details class="learning-resource"><summary>▤ Organizador para completar</summary><div class="resource-body"><p>Copia este esquema y añade un ejemplo en cada línea:</p><ul><li><strong>Fracción:</strong> partes de una unidad → ejemplo: ____.</li><li><strong>Numerador:</strong> partes tomadas → ____.</li><li><strong>Denominador:</strong> partes iguales totales → ____.</li><li><strong>Equivalencia:</strong> misma cantidad → ____ = ____.</li></ul></div></details></article>
-        <article class="activity"><div class="activity-heading"><span>3.2</span><h3>Revisión de la evidencia</h3><small>5 min</small></div><p>Revisa la ficha ya elaborada durante el desarrollo con la lista de cotejo:</p><ul class="checklist"><li>Verifica las representaciones y los términos.</li><li>Comprueba las equivalencias y su justificación.</li><li>Corrige un error con la orientación del docente.</li><li>Entrega la ficha como evidencia individual.</li></ul><a class="resource-link" href="#ficha-trabajo">✎ Abrir ficha de trabajo imprimible ↓</a><a class="text-link" href="#lista-cotejo">Revisar criterios de evaluación ↑</a></article>
+        <article class="activity"><div class="activity-heading"><span>3.2</span><h3>Revisión de la evidencia</h3><small>5 min</small></div><p>Revisa la ficha ya elaborada durante el desarrollo con la lista de cotejo:</p><ul class="checklist"><li>Verifica las representaciones y los términos.</li><li>Comprueba las equivalencias y su justificación.</li><li>Corrige un error con la orientación del docente.</li><li>Entrega la ficha como evidencia individual.</li></ul><a class="resource-link" href="#ficha-trabajo" data-open-resource="ficha-trabajo-dialog" aria-haspopup="dialog">✎ Abrir ficha de trabajo imprimible ↓</a><a class="text-link" href="#lista-cotejo">Revisar criterios de evaluación ↑</a></article>
         <article class="activity reflection"><div class="activity-heading"><span>3.3</span><h3>Reflexionamos</h3><small>5 min</small></div><p>Elige una pregunta y respóndela individualmente en el ticket de salida:</p><ol><li>¿Cómo te ayudaron las figuras a comprender la equivalencia?</li><li>¿Qué descubriste que no veías solo con los números?</li><li>¿Cómo resolverías un problema similar sin computadora?</li></ol><p class="reflection-note">Aprender también es pensar en cómo aprendemos.</p><details class="learning-resource"><summary>✓ Ticket de salida</summary><div class="resource-body"><p>Escribe tu respuesta a la pregunta elegida y una duda que todavía necesitas resolver.</p><p>Compara tu conclusión con la hipótesis del reto inicial.</p></div></details></article>
       </div>
     </section>
   </div>
   <!-- 04 · LABORATORIO: los IDs de los controles se conectan con app.js. -->
-  <section class="lab" id="laboratorio" aria-labelledby="lab-title">
+  <!-- Recurso oculto: se abre desde las actividades. -->
+<dialog class="resource-dialog" id="laboratorio-dialog" aria-labelledby="lab-title">
+<div class="resource-dialog-actions"><button type="button" data-close-resource aria-label="Cerrar ventana">Cerrar ×</button></div>
+<section class="lab" id="laboratorio" aria-labelledby="lab-title">
     <div class="lab-intro"><p class="eyebrow">PRUEBA · COMPARA · DESCUBRE</p><h2 id="lab-title">Tu laboratorio de fracciones</h2><p>Cambia los valores. ¿Puedes crear dos fracciones diferentes que ocupen el mismo espacio?</p><button id="reiniciar" class="reset-button" type="button">↺ Reiniciar ejemplo</button></div>
     <div class="lab-workspace">
       <div class="fraction-editors">
@@ -166,7 +169,11 @@
       <noscript>Activa JavaScript para utilizar el simulador. Ejemplo: 1/2 y 2/4 representan la misma cantidad.</noscript>
     </div>
   </section>
+</dialog>
 <!-- 06 · MATERIAL IMPRIMIBLE: editar aquí ejercicios y espacios de respuesta. -->
+<!-- Recurso oculto: se abre desde las actividades. -->
+<dialog class="resource-dialog" id="ficha-trabajo-dialog" aria-labelledby="ficha-titulo">
+<div class="resource-dialog-actions"><button type="button" data-print-session>Imprimir / Guardar PDF</button><button type="button" data-close-resource aria-label="Cerrar ventana">Cerrar ×</button></div>
 <section class="worksheet" id="ficha-trabajo" aria-labelledby="ficha-titulo">
   <p class="eyebrow">MATERIAL DE TRABAJO · 1.° DE SECUNDARIA</p>
   <h2 id="ficha-titulo">Ficha: distintas fracciones, la misma cantidad</h2>
@@ -181,6 +188,7 @@
   </ol>
   <a class="text-link" href="#lista-cotejo">Revisar mi trabajo con la lista de cotejo ↑</a>
 </section>
+</dialog>
 </main>
 <!-- 05 · PIE DE PÁGINA -->
 <footer class="wrap footer"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a><p>Explorar para comprender. Comprender para aprender.</p><a href="#contenido">Volver arriba ↑</a></footer>
