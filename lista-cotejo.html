@@ -1,0 +1,141 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lista de cotejo · Fracciones equivalentes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f5f9;color:#20384c;font:14px/1.5 Arial,sans-serif}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:26px}h2{font-size:18px}.panel,.paper{background:white;border:1px solid #cbd8e3;border-radius:12px;padding:22px;margin:18px 0}.toolbar{display:flex;gap:12px;flex-wrap:wrap}button,a{color:#075e9c}button{cursor:pointer;background:#edf5fb;border:1px solid #a9c6db;border-radius:6px;padding:10px 14px;font:inherit}input,textarea,select{font:inherit;max-width:100%}label{display:block;margin:12px 0 5px;font-weight:bold}#names{width:100%;min-height:150px;padding:10px}#columns{width:100%;min-height:90px}#sheet{padding:8px}#status{min-height:24px;color:#155c46}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:900px;table-layout:fixed}th,td{border:1px solid #728fa5;padding:7px;vertical-align:top;overflow-wrap:anywhere}th{background:#d7e8f5}th:nth-child(1){width:4%}th:nth-child(2){width:25%}th:last-child{width:23%}td select,td textarea{width:100%;font-size:12px}td textarea{resize:vertical}.print-value{display:none}.criteria{font-size:13px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e2a329;outline-offset:2px}
+@media print{@page{size:A4 landscape;margin:12mm}body{background:white;color:black}main{padding:0;max-width:none}.panel,.toolbar,.back{display:none}.paper{border:0;padding:0;margin:0}.table-scroll{overflow:visible}table{min-width:0;font-size:9pt}td{height:9mm}td select,td textarea{display:none}.print-value{display:block;white-space:pre-wrap}thead{display:table-header-group}tr{break-inside:avoid}h1{font-size:16pt}.criteria{font-size:9pt}th{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body><main>
+<a class="back" href="index.html#lista-cotejo">← Volver a la sesión</a>
+<div class="panel"><h2>Cargar estudiantes</h2><p>Excel: selecciona la hoja y la columna de nombres; puedes combinar columnas de apellidos y nombres en el orden del archivo. TXT: un nombre completo por línea, sin encabezado.</p>
+<label for="file">Archivo Excel o TXT</label><input id="file" type="file" accept=".xlsx,.xls,.txt">
+<div id="excel-options" hidden><label for="sheet">Hoja</label><select id="sheet"></select><label for="columns">Columnas de nombres (Ctrl o Cmd para elegir varias)</label><select id="columns" multiple></select><label><input id="header" type="checkbox" checked> La primera fila contiene encabezados</label><button id="read-columns" type="button">Leer columnas</button></div>
+<label for="names">Revisa o escribe los nombres · uno por línea</label><textarea id="names" placeholder="Pega aquí los nombres, sin números de lista."></textarea>
+<p>Aplicar nombres reemplaza la lista y borra las marcas anteriores. Los nombres y evaluaciones permanecen solo mientras esta página esté abierta; imprime o guarda como PDF antes de cerrarla. La lectura de Excel requiere internet para cargar el lector.</p>
+<div class="toolbar"><button id="apply" type="button">Aplicar nombres</button><button id="clear" type="button">Dejar lista vacía</button><button id="print" type="button">Imprimir / Guardar PDF</button></div><p id="status" role="status" aria-live="polite"></p></div>
+<section class="paper"><h1>Lista de cotejo · Fracciones equivalentes</h1><p>Institución: <span id="meta-institucion">________________</span><br>Docente: <span id="meta-docente">________________</span> · 1.° de secundaria · Sección: <span id="meta-seccion">____</span> · Fecha: <span id="meta-fecha">____</span></p>
+<p><strong>Competencia:</strong> Resuelve problemas de cantidad. <strong>Evidencia:</strong> ficha de trabajo y explicación del estudiante.</p>
+<ol class="criteria"><li><strong>C1:</strong> Representa unidades del mismo tamaño y partes iguales.</li><li><strong>C2:</strong> Identifica y explica numerador y denominador.</li><li><strong>C3:</strong> Construye fracciones equivalentes aplicando el mismo factor.</li><li><strong>C4:</strong> Justifica con gráficos y procedimientos numéricos.</li></ol>
+<p>Marcar Sí / No / No observado. Registrar retroalimentación en Observaciones.</p>
+<div class="table-scroll"><table><thead><tr><th>N.°</th><th>Apellidos y nombres</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>Observaciones</th></tr></thead><tbody id="roster-body"></tbody></table></div></section>
+</main><script>"use strict";
+/* 01. Criterios de la sesión y nombres temporales; no se envían a un servidor. */
+const criteria = ["Representa unidades del mismo tamaño y partes iguales.", "Identifica y explica numerador y denominador.", "Construye fracciones equivalentes aplicando el mismo factor.", "Justifica con gráficos y procedimientos numéricos."];
+const $ = id => document.getElementById(id);
+let workbook = null;
+let libraryPromise;
+function loadExcelLibrary() {
+  if (window.XLSX) return Promise.resolve(window.XLSX);
+  if (!libraryPromise) libraryPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js";
+    script.onload = () => resolve(window.XLSX);
+    script.onerror = () => { script.remove(); libraryPromise = null; reject(new Error("No se pudo cargar el lector Excel. Comprueba internet o usa TXT.")); };
+    document.head.append(script);
+  });
+  return libraryPromise;
+}
+function cellText(cell) { return cell ? String(cell.w ?? cell.v ?? "").trim() : ""; }
+function normalizedNames(text) { return text.replace(/^\uFEFF/, "").split(/\r?\n/).map(s => s.trim()).filter(Boolean); }
+function setStatus(text) { $("status").textContent = text; }
+/* 02. Excel: seleccionar hoja y columnas evita confundir nombres con códigos. */
+function populateColumns() {
+  const sheet = workbook.Sheets[$("sheet").value];
+  if (!sheet["!ref"]) throw new Error("Esta hoja está vacía.");
+  const range = XLSX.utils.decode_range(sheet["!ref"]);
+  if (range.e.r > 10000 || range.e.c > 200) throw new Error("Usa una hoja con hasta 10 000 filas y 200 columnas.");
+  $("columns").replaceChildren();
+  for (let c = range.s.c; c <= range.e.c; c++) {
+    const option = document.createElement("option");
+    option.value = c;
+    const letter = XLSX.utils.encode_col(c);
+    option.textContent = letter + " · " + cellText(sheet[letter + (range.s.r + 1)]).slice(0,60);
+    if (c === range.s.c) option.selected = true;
+    $("columns").append(option);
+  }
+}
+$("file").addEventListener("change", async () => {
+  const file = $("file").files[0];
+  if (!file) return;
+  $("file").disabled = true;
+  try {
+    if (file.size > 5 * 1024 * 1024) throw new Error("El archivo supera 5 MB. Usa una lista más pequeña.");
+    if (/\.txt$/i.test(file.name)) {
+      $("names").value = (await file.text()).replace(/^\uFEFF/, "");
+      $("excel-options").hidden = true;
+      setStatus("TXT leído. Revisa los nombres y pulsa Aplicar nombres.");
+    } else if (/\.(xlsx|xls)$/i.test(file.name)) {
+      const library = await loadExcelLibrary();
+      const nextWorkbook = library.read(await file.arrayBuffer(), {type:"array",sheetRows:10001});
+      if (!nextWorkbook.SheetNames.length) throw new Error("El libro no contiene hojas.");
+      workbook = nextWorkbook;
+      $("sheet").replaceChildren();
+      for (const name of workbook.SheetNames) {
+        const option = document.createElement("option");
+        option.value = name; option.textContent = name; $("sheet").append(option);
+      }
+      $("excel-options").hidden = false;
+      populateColumns();
+      setStatus("Selecciona hoja y columnas de nombres. Luego pulsa Leer columnas.");
+    } else throw new Error("Selecciona un archivo .xlsx, .xls o .txt.");
+  } catch (error) { setStatus(error.message || "No se pudo leer el archivo."); }
+  finally { $("file").disabled = false; $("file").value = ""; }
+});
+$("sheet").addEventListener("change", () => { try { populateColumns(); } catch(e) { setStatus(e.message); } });
+$("read-columns").addEventListener("click", () => {
+  try {
+    const sheet = workbook.Sheets[$("sheet").value];
+    const range = XLSX.utils.decode_range(sheet["!ref"]);
+    const columns = [...$("columns").selectedOptions].map(o => Number(o.value));
+    if (!columns.length) throw new Error("Selecciona al menos una columna.");
+    const names = [];
+    for (let r = range.s.r + ($("header").checked ? 1 : 0); r <= range.e.r; r++) {
+      const name = columns.map(c => cellText(sheet[XLSX.utils.encode_cell({r,c})])).filter(Boolean).join(" ");
+      if (name) names.push(name);
+    }
+    $("names").value = names.join("\n");
+    setStatus("Vista previa preparada. Corrige cualquier fila que no sea un estudiante y pulsa Aplicar nombres.");
+  } catch(e) { setStatus(e.message || "No se pudo preparar la lista."); }
+});
+/* 03. Tabla editable; imprimir conserva marcas y observaciones. */
+function renderRoster(names) {
+  const body = $("roster-body"); body.replaceChildren();
+  const rows = names.length ? names : Array(20).fill("");
+  rows.forEach((name,index) => {
+    const tr = document.createElement("tr");
+    const number = document.createElement("td"); number.textContent = index+1; tr.append(number);
+    const student = document.createElement("td"); student.textContent = name; tr.append(student);
+    criteria.forEach((criterion,c) => {
+      const td = document.createElement("td");
+      const select = document.createElement("select");
+      select.setAttribute("aria-label", "Estudiante " + (index+1) + ", criterio " + (c+1));
+      for (const value of ["", "Sí", "No", "No observado"]) {
+        const option = document.createElement("option"); option.value = value; option.textContent = value || "—"; select.append(option);
+      }
+      const print = document.createElement("span"); print.className = "print-value";
+      select.addEventListener("change", () => { print.textContent = select.value; });
+      td.append(select,print); tr.append(td);
+    });
+    const td = document.createElement("td");
+    const input = document.createElement("textarea"); input.rows = 1; input.maxLength = 250;
+    input.setAttribute("aria-label","Observaciones del estudiante " + (index+1));
+    const print = document.createElement("span"); print.className = "print-value";
+    input.addEventListener("input", () => { print.textContent = input.value; });
+    td.append(input,print); tr.append(td); body.append(tr);
+  });
+}
+$("apply").addEventListener("click", () => {
+  const names = normalizedNames($("names").value);
+  if (names.length > 200 || names.some(n => n.length > 180)) return setStatus("Máximo 200 estudiantes y 180 caracteres por nombre.");
+  renderRoster(names);
+  setStatus(names.length ? names.length + " estudiantes cargados. Las casillas siguen sin evaluar." : "Lista vacía: 20 filas para completar a mano.");
+});
+$("clear").addEventListener("click", () => { $("names").value = ""; renderRoster([]); setStatus("Lista restablecida sin nombres ni marcas."); });
+$("print").addEventListener("click", () => window.print());
+try {
+  const data = JSON.parse(localStorage.getItem("sesion-fracciones-datos-v1") || "{}");
+  for (const key of ["institucion","docente","seccion","fecha"]) {
+    let value = typeof data?.[key] === "string" ? data[key] : "";
+    if (key === "fecha" && /^\d{4}-\d{2}-\d{2}$/.test(value)) value = value.split("-").reverse().join("/");
+    $("meta-"+key).textContent = value || "________________";
+  }
+} catch { /* Se conservan los espacios vacíos. */ }
+renderRoster([]);
+</script></body></html>
