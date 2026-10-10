@@ -21,3 +21,38 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 /* 08. IMPRESIÓN · permite guardar una copia legible como PDF. */
 @media print{body{background:white;font-size:11px}.wrap{width:100%}.hero{background:white;color:#18283e}.hero-body{padding:20px 0;gap:20px}.hero-description,.hero-copy>.eyebrow,h1 em{color:#18283e}.hero-visual{box-shadow:none;transform:none;border:1px solid #ddd}.metadata span{border-color:#ddd}.print-button,.lesson-nav,.reset-button,.footer,.skip-link{display:none}.overview{padding:15px 0}.lesson-grid{display:block}.phase{margin-bottom:16px;break-inside:avoid}.phase-header{background:#eee;color:#18283e}.phase-content{display:block}.activity{padding:12px 0}.lab{display:block;break-inside:avoid}.lab-workspace{margin-top:15px}a{text-decoration:none}.phase-number{color:#555}}
+
+/* 09. PROPÓSITO CURRICULAR · tabla según el formato de planificación.
+   El contenedor permite desplazamiento en móvil sin desbordar la página. */
+.curriculum { margin-block: 28px; }
+.curriculum h2 { color: #155b8a; font-size: 19px; }
+.curriculum-meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.curriculum-intro { margin-block: 12px 18px; max-width: 1000px; }
+.curriculum-scroll { overflow-x: auto; border: 1px solid #8ab4cb; border-radius: 10px; }
+.curriculum-scroll:focus-visible { outline: 3px solid #f5ac37; outline-offset: 4px; }
+.curriculum-table { width: 100%; min-width: 760px; border-collapse: collapse; background: white; table-layout: fixed; font-size: 12px; }
+.curriculum-table caption { text-align: left; padding: 12px 16px; color: #456078; background: #eef6fb; font-weight: 600; }
+.curriculum-table th { background: #0b83b5; color: white; text-align: center; text-transform: uppercase; font-size: 11px; letter-spacing: .3px; }
+.curriculum-table th, .curriculum-table td { padding: 15px; border: 1px solid #bfd3df; vertical-align: top; overflow-wrap: break-word; }
+.curriculum-table th:nth-child(1) { width: 27%; }
+.curriculum-table th:nth-child(2) { width: 35%; }
+.curriculum-table th:nth-child(3) { width: 23%; }
+.curriculum-table th:nth-child(4) { width: 15%; }
+.curriculum-table td > strong { color: #155b8a; }
+.curriculum-table td p + a { display: inline-block; margin-top: 10px; }
+.curriculum-source { color: var(--muted); font-size: 11px; margin-top: 12px; }
+.curriculum-source a, .curriculum-table a { color: #155b8a; }
+.assessment { margin-top: 14px; background: #edf6fe; padding: 14px 18px; border-radius: 10px; font-size: 12px; }
+.assessment summary { cursor: pointer; font-weight: 700; color: #155b8a; }
+.assessment p { margin-top: 10px; }
+@media (max-width: 600px) {
+  .curriculum h2 { font-size: 18px; }
+  .curriculum-intro { font-size: 13px; }
+  .curriculum-table th, .curriculum-table td { padding: 12px; }
+}
+@media print {
+  .curriculum-scroll { overflow: visible; border-radius: 0; }
+  .curriculum-table { min-width: 0; font-size: 9px; }
+  .curriculum-table th { background: #e8f0f5; color: #18283e; font-size: 9px; }
+  .curriculum-table th, .curriculum-table td { padding: 7px; }
+}
