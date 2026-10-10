@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sesión de aprendizaje de matemática: descubre las fracciones equivalentes con actividades y un simulador visual.">
   <title>Fracciones equivalentes | Sesión de aprendizaje</title>
-  <link rel="stylesheet" href="styles.css?v=impresion-legible-2">
-  <script src="app.js?v=impresion-a4-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=configuracion-1">
+  <script src="app.js?v=configuracion-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -14,6 +14,7 @@
 <header class="hero">
   <nav class="topbar wrap" aria-label="Navegación principal">
     <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a>
+    <button class="print-button" id="configurar-datos" type="button" aria-haspopup="dialog">⚙ Configurar datos</button>
     <button class="print-button" id="imprimir" type="button">Imprimir / Guardar PDF <span aria-hidden="true">↗</span></button>
   </nav>
   <div class="hero-body wrap">
@@ -188,11 +189,11 @@
     <header class="document-header"><p>EDUCACIÓN BÁSICA REGULAR · SECUNDARIA</p><h1>SESIÓN DE APRENDIZAJE N.° 01</h1><h2>Fracciones y fracciones equivalentes</h2></header>
     <h3>I. DATOS INFORMATIVOS</h3>
     <table class="document-table"><tbody>
-      <tr><th>Institución educativa</th><td colspan="3">________________________________________________</td></tr>
-      <tr><th>Docente</th><td colspan="3">________________________________________________</td></tr>
+      <tr><th>Institución educativa</th><td colspan="3" data-session-field="institucion">________________________________________________</td></tr>
+      <tr><th>Docente</th><td colspan="3" data-session-field="docente">________________________________________________</td></tr>
       <tr><th>Área</th><td>Matemática</td><th>Nivel / ciclo</th><td>Secundaria / VI</td></tr>
-      <tr><th>Grado</th><td>1.° de secundaria</td><th>Sección</th><td>____________</td></tr>
-      <tr><th>Duración</th><td>90 minutos</td><th>Fecha</th><td>____ / ____ / ______</td></tr>
+      <tr><th>Grado</th><td>1.° de secundaria</td><th>Sección</th><td data-session-field="seccion">____________</td></tr>
+      <tr><th>Duración</th><td>90 minutos</td><th>Fecha</th><td data-session-field="fecha">____ / ____ / ______</td></tr>
     </tbody></table>
     <h3>II. PROPÓSITO DE APRENDIZAJE</h3>
     <p class="document-purpose">Representar y comparar fracciones de una misma unidad, construir equivalencias y explicar por qué expresan la misma cantidad utilizando gráficos, procedimientos numéricos y el simulador.</p>
@@ -240,5 +241,25 @@
     <footer>MATEMÁTICA · 1.° DE SECUNDARIA <span>3</span></footer>
   </section>
 </section>
+
+<!-- 08. CONFIGURACIÓN · diálogo accesible; los datos se guardan solo en este navegador. -->
+<dialog id="datos-dialog" class="settings-dialog" aria-labelledby="datos-title" aria-describedby="datos-help">
+  <form id="datos-form">
+    <div class="settings-icon" aria-hidden="true">⚙</div>
+    <h2 id="datos-title">Datos de la sesión</h2>
+    <p id="datos-help">Completa los datos que aparecerán en la impresión. Puedes dejar campos vacíos para llenarlos a mano.</p>
+    <label for="dato-institucion">Institución educativa</label>
+    <input id="dato-institucion" name="institucion" maxlength="120" placeholder="Nombre de la institución" autofocus>
+    <label for="dato-docente">Docente</label>
+    <input id="dato-docente" name="docente" maxlength="100" placeholder="Nombres y apellidos">
+    <div class="settings-row">
+      <div><label for="dato-seccion">Sección</label><input id="dato-seccion" name="seccion" maxlength="30" placeholder="Ej. A"></div>
+      <div><label for="dato-fecha">Fecha de la sesión</label><input id="dato-fecha" name="fecha" type="date" min="1900-01-01" max="2100-12-31"></div>
+    </div>
+    <p class="settings-note">Se guardan en este navegador. No se envían a un servidor.</p>
+    <div class="settings-actions"><button id="cancelar-datos" type="button">Cancelar</button><button type="submit" class="settings-save">Guardar datos</button></div>
+  </form>
+</dialog>
+<p id="datos-status" class="settings-toast" role="status" aria-live="polite"></p>
 </body>
 </html>
