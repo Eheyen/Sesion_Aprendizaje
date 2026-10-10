@@ -127,3 +127,25 @@
   #print-worksheet .answer-line { min-height: 12mm; }
   #print-worksheet .worksheet-exercises > li { margin-top: 5mm; }
 }
+
+/* 12. VENTANA DE CONFIGURACIÓN · centrada y adaptable a móviles. */
+.topbar { gap: 12px; flex-wrap: wrap; }
+.topbar .brand { margin-right: auto; }
+.settings-dialog { width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 28px; border: 0; border-radius: 16px; color: #24384b; box-shadow: 0 20px 80px #0004; }
+.settings-dialog::backdrop { background: #15233799; }
+.settings-icon { margin: 0 auto 12px; display: grid; place-items: center; border-radius: 50%; width: 54px; height: 54px; background: #e7f4fa; color: #087fba; font-size: 28px; }
+.settings-dialog h2 { text-align: center; font-size: 23px; }
+#datos-help { text-align: center; font-size: 13px; color: #607183; margin: 10px 0 18px; }
+.settings-dialog label { display: block; margin: 12px 0 5px; font-size: 12px; font-weight: 700; }
+.settings-dialog input { box-sizing: border-box; min-width: 0; width: 100%; padding: 10px; border: 1px solid #b8cbd9; border-radius: 7px; font: inherit; font-size: 14px; background: white; color: #24384b; }
+.settings-dialog input:focus-visible { outline: 3px solid #67c2e5; outline-offset: 2px; }
+.settings-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+.settings-row > div { min-width: 0; }
+.settings-note { color: #637589; font-size: 11px; margin-top: 14px; }
+.settings-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+.settings-actions button { border: 1px solid #c1d1de; background: #f1f5f8; padding: 10px 16px; border-radius: 7px; color: #334d64; }
+.settings-actions .settings-save { background: #097caf; color: white; border-color: #097caf; }
+.settings-toast:empty { display: none; }
+.settings-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); background: #166645; color: white; padding: 14px 20px; border-radius: 10px; box-shadow: 0 5px 25px #0003; z-index: 50; }
+@media(max-width:420px) { .settings-dialog { padding: 20px; } .settings-row { grid-template-columns: 1fr; gap: 0; } }
+@media print { .settings-dialog, .settings-toast { display: none !important; } }
