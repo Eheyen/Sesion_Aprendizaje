@@ -74,5 +74,22 @@ function resetSimulation() {
   updateComparison();
 }
 document.querySelector("#reiniciar").addEventListener("click", resetSimulation);
-document.querySelector("#imprimir").addEventListener("click", () => window.print());
+/* 06. IMPRESIÓN · reutiliza contenido actual para evitar duplicar la tabla y la ficha. */
+function preparePrintDocument() {
+  const table = document.querySelector(".curriculum-table").cloneNode(true);
+  table.className = "document-table";
+  table.querySelectorAll("a").forEach(link => link.remove());
+  document.querySelector("#print-curriculum").replaceChildren(table);
+  const worksheet = document.querySelector("#ficha-trabajo").cloneNode(true);
+  worksheet.removeAttribute("id");
+  worksheet.querySelectorAll("a, .eyebrow, h2").forEach(node => node.remove());
+  worksheet.querySelector("p")?.remove();
+  document.querySelector("#print-worksheet").replaceChildren(worksheet);
+}
+document.querySelector("#imprimir").addEventListener("click", () => {
+  preparePrintDocument();
+  window.print();
+});
+window.addEventListener("beforeprint", preparePrintDocument);
+preparePrintDocument();
 resetSimulation();
