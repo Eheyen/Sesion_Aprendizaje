@@ -86,7 +86,7 @@
 @media print {
   @page { size: A4 portrait; margin: 12mm; }
   body > :not(.print-document) { display: none !important; }
-  .print-document { display: block !important; color: #111; font-family: Arial, sans-serif; font-size: 9pt; line-height: 1.35; }
+  .print-document { display: block !important; color: #111; font-family: Arial, sans-serif; font-size: 10pt; line-height: 1.4; }
   .print-page { break-after: page; position: relative; }
   .print-page:last-child { break-after: auto; }
   .document-header { text-align: center; margin-bottom: 6mm; border-bottom: 2px solid #376b90; padding-bottom: 3mm; }
@@ -95,7 +95,7 @@
   .document-header p { font-size: 8pt; }
   .print-page h3 { font-size: 10pt; color: #164f78; margin: 4mm 0 2mm; }
   .document-purpose { border: 1px solid #56748b; background: #eef5fa; padding: 3mm; margin-bottom: 3mm; }
-  .document-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 8pt; line-height: 1.35; }
+  .document-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 9.5pt; line-height: 1.35; }
   .document-table th, .document-table td { border: 1px solid #526879; padding: 2mm; vertical-align: top; overflow-wrap: anywhere; }
   .document-table th { background: #cee2f2; color: #102c40; text-align: center; font-weight: bold; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .document-table ul { padding-left: 4mm; margin: 1mm 0; }
@@ -103,6 +103,15 @@
   .document-table p + p { margin-top: 2mm; }
   .document-table caption { text-align: left; font-size: 8pt; padding-bottom: 2mm; }
   .document-table tr { break-inside: avoid; }
+  .document-table { border: 1pt solid #526879; width: calc(100% - 2px); margin-inline: 1px; }
+  .print-document, .print-page { width: 100%; max-width: 100%; min-width: 0; }
+  .print-document { overflow: visible; }
+  .document-table td { white-space: normal; word-break: normal; }
+  .sequence-table { font-size: 9pt; }
+  .evaluation-table { font-size: 9pt; }
+  .evaluation-table th:nth-child(1) { width: 62%; }
+  .evaluation-table th:nth-child(2), .evaluation-table th:nth-child(3) { width: 7%; }
+  .evaluation-table th:nth-child(4) { width: 24%; }
   .document-table thead { display: table-header-group; }
   #print-curriculum th:nth-child(1) { width: 27%; }
   #print-curriculum th:nth-child(2) { width: 34%; }
