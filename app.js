@@ -146,3 +146,26 @@ settingsForm.addEventListener("submit", event => {
   statusTimer = setTimeout(() => { settingsStatus.textContent = ""; }, 6500);
 });
 applySessionData();
+
+/* 08. RECURSOS EN VENTANAS · mantiene valores y devuelve el foco al cerrar. */
+for (const modal of document.querySelectorAll(".resource-dialog")) {
+  let opener;
+  document.querySelectorAll('[data-open-resource="' + modal.id + '"]').forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      opener = link;
+      modal.showModal();
+    });
+  });
+  modal.querySelector("[data-close-resource]").addEventListener("click", () => modal.close());
+  modal.addEventListener("close", () => opener?.focus());
+  modal.querySelectorAll('a[href^="#"]:not([data-open-resource])').forEach(link => {
+    link.addEventListener("click", () => modal.close());
+  });
+}
+document.querySelectorAll("[data-print-session]").forEach(button => {
+  button.addEventListener("click", () => {
+    button.closest("dialog").close();
+    document.querySelector("#imprimir").click();
+  });
+});
