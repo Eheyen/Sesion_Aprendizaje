@@ -93,3 +93,56 @@ document.querySelector("#imprimir").addEventListener("click", () => {
 window.addEventListener("beforeprint", preparePrintDocument);
 preparePrintDocument();
 resetSimulation();
+
+/* 07. DATOS DE LA SESIÓN · localStorage y texto seguro para impresión.
+   Cancelar o Escape descarta la edición; guardar actualiza la plantilla. */
+const SETTINGS_KEY = "sesion-fracciones-datos-v1";
+const sessionKeys = ["institucion", "docente", "seccion", "fecha"];
+const limits = { institucion: 120, docente: 100, seccion: 30, fecha: 10 };
+function normalizeSessionData(input) {
+  const data = {};
+  for (const key of sessionKeys) {
+    data[key] = typeof input?.[key] === "string" ? input[key].trim().slice(0, limits[key]) : "";
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(data.fecha)) data.fecha = "";
+  return data;
+}
+let sessionData = normalizeSessionData({});
+try { sessionData = normalizeSessionData(JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}")); } catch { /* El formulario funciona incluso sin almacenamiento. */ }
+const settingsDialog = document.querySelector("#datos-dialog");
+const settingsForm = document.querySelector("#datos-form");
+const settingsButton = document.querySelector("#configurar-datos");
+const settingsStatus = document.querySelector("#datos-status");
+let statusTimer;
+function applySessionData() {
+  for (const key of sessionKeys) {
+    let value = sessionData[key];
+    if (key === "fecha" && value) value = value.split("-").reverse().join(" / ");
+    const placeholder = key === "fecha" ? "____ / ____ / ______" : "____________________________";
+    document.querySelectorAll('[data-session-field="' + key + '"]').forEach(cell => {
+      cell.textContent = value || placeholder;
+    });
+  }
+}
+settingsButton.addEventListener("click", () => {
+  for (const key of sessionKeys) settingsForm.elements.namedItem(key).value = sessionData[key];
+  settingsDialog.showModal();
+});
+document.querySelector("#cancelar-datos").addEventListener("click", () => settingsDialog.close());
+settingsDialog.addEventListener("close", () => settingsButton.focus());
+settingsForm.addEventListener("submit", event => {
+  event.preventDefault();
+  if (!settingsForm.reportValidity()) return;
+  const values = {};
+  for (const key of sessionKeys) values[key] = settingsForm.elements.namedItem(key).value;
+  sessionData = normalizeSessionData(values);
+  let message = "✓ Datos guardados. Ya aparecerán al imprimir.";
+  try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(sessionData)); }
+  catch { message = "Datos aplicados a la impresión. Este navegador no permite conservarlos al cerrar."; }
+  applySessionData();
+  settingsDialog.close();
+  clearTimeout(statusTimer);
+  settingsStatus.textContent = message;
+  statusTimer = setTimeout(() => { settingsStatus.textContent = ""; }, 6500);
+});
+applySessionData();
