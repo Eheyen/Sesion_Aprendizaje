@@ -63,3 +63,20 @@
 .curriculum-table li + li { margin-top: 10px; }
 .curriculum-table td:nth-child(3) { background: #f3f8fc; }
 .curriculum-table td:nth-child(4) { background: #eaf3f9; }
+
+/* 10. RECURSOS DIDÁCTICOS · paneles desplegables y videos responsive. */
+.learning-resource { margin-top: 14px; border: 1px solid #ccdce8; border-radius: 8px; background: #f7fafc; overflow: hidden; }
+.learning-resource summary { padding: 12px; color: #174f7c; cursor: pointer; font-size: 12px; font-weight: 700; }
+.learning-resource summary:focus-visible { outline: 3px solid #f5ac37; outline-offset: -3px; }
+.resource-body { padding: 0 12px 12px; font-size: 12px; color: #354b61; }
+.resource-body p + p { margin-top: 10px; }
+.lesson-video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; margin-top: 12px; border-radius: 6px; background: #102c46; }
+.worksheet { margin-block: 28px; padding: 28px; border: 1px solid #cedce8; border-radius: 14px; background: white; }
+.worksheet h2 { margin-block: 8px 12px; font-size: 23px; }
+.worksheet > p { max-width: 900px; }
+.student-line { margin-top: 20px; overflow-wrap: anywhere; }
+.worksheet-exercises > li { margin-top: 20px; padding-left: 5px; }
+.answer-space { min-height: 85px; border: 1px dashed #abbccc; border-radius: 5px; margin-top: 10px; }
+.answer-line { min-height: 40px; border-bottom: 1px solid #abbccc; }
+@media(max-width:600px) { .worksheet { padding: 18px; } .worksheet h2 { font-size: 20px; } }
+@media print { .lesson-video { display: none; } .worksheet { break-before: page; padding: 0; border: 0; } .worksheet-exercises > li { break-inside: avoid; } .learning-resource { break-inside: avoid; } }
