@@ -20,4 +20,4 @@ Modifica los numeradores y denominadores del simulador para comparar dos fraccio
 HTML semántico, etiquetas para controles, foco visible, mensajes anunciados con aria-live y adaptación a pantallas pequeñas. La equivalencia se comunica mediante texto además del color.
 
 ## Verificación
-Revisión estática del código. Pendiente de comprobación visual y funcional en un navegador.
+Revisión estática de IDs y prueba de la lógica del simulador con un DOM simulado: estado inicial, equivalencia, desigualdad, límite del numerador y reinicio. Pendiente de comprobación visual y funcional en un navegador real.

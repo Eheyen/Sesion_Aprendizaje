@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sesión de aprendizaje de matemática: descubre las fracciones equivalentes con actividades y un simulador visual.">
+  <title>Fracciones equivalentes | Sesión de aprendizaje</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<!-- 01 · CABECERA: cambia aquí el título y los datos de la sesión. -->
+<header class="hero">
+  <nav class="topbar wrap" aria-label="Navegación principal">
+    <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a>
+    <button class="print-button" id="imprimir" type="button">Imprimir sesión <span aria-hidden="true">↗</span></button>
+  </nav>
+  <div class="hero-body wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> SESIÓN DE APRENDIZAJE · 01</p>
+      <h1>Fracciones y fracciones <em>equivalentes.</em></h1>
+      <p class="hero-description">Una misma cantidad, muchas formas de representarla.<br>Aprendemos explorando con simuladores visuales.</p>
+      <div class="metadata" aria-label="Datos de la sesión">
+        <span>Matemática</span><span>1.° de secundaria</span><span>90 minutos</span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Dos cuartos equivalen a un medio">
+      <div class="visual-top"><span class="window-dots" aria-hidden="true">● ● ●</span><span>EL MISMO VALOR</span></div>
+      <div class="visual-equation">
+        <div><div class="circle circle-quarter"></div><span class="fraction"><b>2</b><b>4</b></span></div>
+        <span class="equal">=</span>
+        <div><div class="circle circle-half"></div><span class="fraction"><b>1</b><b>2</b></span></div>
+      </div>
+      <p><span aria-hidden="true">✦</span> Diferentes partes. La misma cantidad.</p>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="contenido">
+  <!-- 02 · OBJETIVOS DE APRENDIZAJE -->
+  <section class="overview" aria-label="Objetivos de la sesión">
+    <article class="purpose">
+      <span class="section-icon" aria-hidden="true">◎</span>
+      <div><p class="eyebrow">NUESTRO PROPÓSITO</p><h2>Comprender, representar y explicar.</h2>
+      <p>Construir el significado de las fracciones mediante experiencias visuales, participación activa y razonamiento matemático.</p></div>
+    </article>
+    <article class="outcomes">
+      <h2>Al finalizar, podrás…</h2>
+      <ul class="checklist"><li>Representar partes iguales de una unidad.</li><li>Identificar numerador y denominador.</li><li>Construir y justificar fracciones equivalentes.</li></ul>
+    </article>
+  </section>
+  <nav class="lesson-nav" aria-label="Momentos de la sesión"><a href="#inicio"><span>01</span> Inicio <small>20 min</small></a><a href="#desarrollo"><span>02</span> Desarrollo <small>50 min</small></a><a href="#cierre"><span>03</span> Cierre <small>20 min</small></a></nav>
+  <!-- 03 · MOMENTOS: tres columnas en escritorio y una columna en móvil. -->
+  <div class="lesson-grid">
+    <section class="phase phase-start" id="inicio" aria-labelledby="titulo-inicio">
+      <header class="phase-header"><div><span class="phase-number">01</span><h2 id="titulo-inicio">Inicio</h2></div><span>◷ 20 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>1.1</span><h3>Una pizza en familia</h3><small>10 min</small></div>
+          <p>Dos grupos comparten pizzas del mismo tamaño. El primero divide su pizza en <strong>2 partes iguales</strong> y come una. El segundo la divide en <strong>4 partes iguales</strong> y come dos.</p>
+          <div class="pizza-comparison" aria-label="Una mitad y dos cuartos de pizzas del mismo tamaño"><div><div class="pizza pizza-half"></div><strong>1/2</strong></div><div><div class="pizza pizza-quarter"></div><strong>2/4</strong></div></div>
+          <p class="question">¿El segundo grupo comió más?<br>¿Cómo podríamos comprobarlo?</p>
+        </article>
+        <article class="activity"><div class="activity-heading"><span>1.2</span><h3>Lo que ya sabemos</h3><small>5 min</small></div>
+          <p>Conversamos y recuperamos nuestras ideas:</p><ul><li>¿Qué significa dividir una unidad en partes iguales?</li><li>¿Cómo representamos una de cuatro porciones?</li><li>¿Qué indican los números de una fracción?</li></ul>
+          <div class="mini-example"><div class="fraction-bar" aria-label="Una de cuatro partes coloreada"><i class="filled"></i><i></i><i></i><i></i></div><strong>1/4</strong></div>
+        </article>
+        <article class="activity challenge"><p class="eyebrow">1.3 · EL RETO · 5 MIN</p><h3>¿Pueden dos fracciones con números diferentes representar exactamente la misma cantidad?</h3><p>Hoy vamos a descubrirlo.</p><div class="challenge-equation" aria-hidden="true">½ <span>=</span> ²⁄₄</div></article>
+      </div>
+    </section>
+    <section class="phase phase-development" id="desarrollo" aria-labelledby="titulo-desarrollo">
+      <header class="phase-header"><div><span class="phase-number">02</span><h2 id="titulo-desarrollo">Desarrollo</h2></div><span>◷ 50 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>2.1</span><h3>Construimos el aprendizaje</h3><small>15 min</small></div>
+          <p>Una <strong>fracción</strong> representa una o varias partes iguales de una unidad.</p>
+          <div class="fraction-anatomy"><span class="fraction"><b>3</b><b>4</b></span><div><p><strong>Numerador</strong><br>Cuántas partes tomamos.</p><p><strong>Denominador</strong><br>En cuántas partes iguales dividimos.</p></div></div>
+          <p>Las <strong>fracciones equivalentes</strong> tienen números distintos, pero representan la misma cantidad.</p>
+        </article>
+        <article class="activity"><div class="activity-heading"><span>2.2</span><h3>Una estrategia matemática</h3><small>10 min</small></div>
+          <p>Multiplicamos o dividimos el numerador y el denominador por un mismo número distinto de cero.</p>
+          <div class="formula" aria-label="Un medio equivale a dos cuartos y a cuatro octavos"><span>1/2</span><b>× 2 →</b><span>2/4</span><b>× 2 →</b><span>4/8</span></div>
+          <p class="muted">Podemos usar círculos, barras y tablas para verificar el resultado.</p>
+        </article>
+        <article class="activity"><div class="activity-heading"><span>2.3</span><h3>Exploramos con tecnología</h3><small>15 min</small></div>
+          <p>Usa el laboratorio de abajo: representa una fracción, compárala con otra y busca equivalencias.</p>
+          <a class="text-link" href="#laboratorio">Abrir nuestro laboratorio <span aria-hidden="true">↓</span></a>
+          <a class="resource-link" href="https://phet.colorado.edu/es/simulations/build-a-fraction" target="_blank" rel="noopener noreferrer">Recurso adicional: PhET · Construye una fracción ↗</a>
+        </article>
+        <article class="activity"><div class="activity-heading"><span>2.4</span><h3>Aprendemos en equipo</h3><small>10 min</small></div><ul class="checklist"><li>Exploren el simulador por parejas.</li><li>Formulen una hipótesis y compruébenla.</li><li>Registren y compartan sus conclusiones.</li><li>Expliquen cómo resolvieron el reto.</li></ul></article>
+      </div>
+    </section>
+    <section class="phase phase-end" id="cierre" aria-labelledby="titulo-cierre">
+      <header class="phase-header"><div><span class="phase-number">03</span><h2 id="titulo-cierre">Cierre</h2></div><span>◷ 20 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>3.1</span><h3>Ordenamos nuestras ideas</h3><small>10 min</small></div><ol class="takeaways"><li>Una fracción representa partes iguales de una unidad.</li><li>Dos fracciones equivalentes expresan la misma cantidad.</li><li>Las figuras y los procedimientos numéricos nos ayudan a justificarlo.</li></ol></article>
+        <article class="activity"><div class="activity-heading"><span>3.2</span><h3>Evidencia de aprendizaje</h3><small>5 min</small></div><p>En tu cuaderno o ficha de trabajo:</p><ul class="checklist"><li>Dibuja una fracción e identifica sus elementos.</li><li>Construye dos fracciones equivalentes.</li><li>Resuelve el problema de las pizzas.</li><li>Escribe una conclusión del simulador.</li></ul></article>
+        <article class="activity reflection"><div class="activity-heading"><span>3.3</span><h3>Reflexionamos</h3><small>5 min</small></div><p>Responde individualmente:</p><ol><li>¿Cómo te ayudaron las figuras a comprender la equivalencia?</li><li>¿Qué descubriste que no veías solo con los números?</li><li>¿Cómo resolverías un problema similar sin computadora?</li></ol><p class="reflection-note">Aprender también es pensar en cómo aprendemos.</p></article>
+      </div>
+    </section>
+  </div>
+  <!-- 04 · LABORATORIO: los IDs de los controles se conectan con app.js. -->
+  <section class="lab" id="laboratorio" aria-labelledby="lab-title">
+    <div class="lab-intro"><p class="eyebrow">PRUEBA · COMPARA · DESCUBRE</p><h2 id="lab-title">Tu laboratorio de fracciones</h2><p>Cambia los valores. ¿Puedes crear dos fracciones diferentes que ocupen el mismo espacio?</p><button id="reiniciar" class="reset-button" type="button">↺ Reiniciar ejemplo</button></div>
+    <div class="lab-workspace">
+      <div class="fraction-editors">
+        <fieldset><legend>Fracción A</legend><div class="controls"><label>Numerador<select id="num-a"></select></label><label>Denominador<select id="den-a"></select></label></div><div class="interactive-bar" id="bar-a" role="img"></div><output id="value-a"></output></fieldset>
+        <span class="compare-symbol" id="compare-symbol" aria-hidden="true">=</span>
+        <fieldset><legend>Fracción B</legend><div class="controls"><label>Numerador<select id="num-b"></select></label><label>Denominador<select id="den-b"></select></label></div><div class="interactive-bar" id="bar-b" role="img"></div><output id="value-b"></output></fieldset>
+      </div>
+      <p id="resultado" class="result" role="status" aria-live="polite"></p>
+      <noscript>Activa JavaScript para utilizar el simulador. Ejemplo: 1/2 y 2/4 representan la misma cantidad.</noscript>
+    </div>
+  </section>
+</main>
+<!-- 05 · PIE DE PÁGINA -->
+<footer class="wrap footer"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a><p>Explorar para comprender. Comprender para aprender.</p><a href="#contenido">Volver arriba ↑</a></footer>
+</body>
+</html>
