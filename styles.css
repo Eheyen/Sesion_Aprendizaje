@@ -179,3 +179,15 @@
   .equivalence-exercise p { font-size: 7pt; margin-top: 2mm; }
   .visual-pair svg { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
+
+/* 15. LISTA DE COTEJO INTEGRADA · páginas A4 verticales antes de la ficha. */
+@media print {
+  #print-saved-roster .print-page { break-after: page; }
+  .roster-print-page > p, .roster-print-page > ul { font-size: 8.5pt; margin-bottom: 3mm; }
+  .saved-roster-table { margin-top: 4mm; font-size: 8pt; }
+  .saved-roster-table th:nth-child(1) { width: 5%; }
+  .saved-roster-table th:nth-child(2) { width: 27%; }
+  .saved-roster-table th:nth-child(n+3):nth-child(-n+6) { width: 8%; }
+  .saved-roster-table th:nth-child(7) { width: 36%; }
+  .saved-roster-table td { min-height: 8mm; padding: 2mm 1mm; white-space: pre-wrap; }
+}
