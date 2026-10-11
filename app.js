@@ -76,6 +76,7 @@ function resetSimulation() {
 document.querySelector("#reiniciar").addEventListener("click", resetSimulation);
 /* 06. IMPRESIÓN · reutiliza contenido actual para evitar duplicar la tabla y la ficha. */
 function preparePrintDocument() {
+  prepareSavedRoster();
   const table = document.querySelector(".curriculum-table").cloneNode(true);
   table.className = "document-table";
   table.querySelectorAll("a").forEach(link => link.remove());
@@ -169,3 +170,47 @@ document.querySelectorAll("[data-print-session]").forEach(button => {
     document.querySelector("#imprimir").click();
   });
 });
+
+/* 09. LISTA GUARDADA · leer al imprimir para recoger cambios desde otra pestaña.
+   Se crea con textContent para tratar los nombres como texto, nunca como HTML. */
+function prepareSavedRoster() {
+  const container = document.querySelector("#print-saved-roster");
+  if (!container) return;
+  let rows = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem("sesion-fracciones-cotejo-v1") || "null");
+    if (Array.isArray(saved?.rows)) rows = saved.rows.slice(0,200).filter(row => row && typeof row.name === "string");
+  } catch { /* Sin datos guardados, imprimir una lista en blanco. */ }
+  if (!rows.length) rows = Array.from({length:20}, () => ({name:"",marks:[],notes:""}));
+  container.replaceChildren();
+  const criteria = ["C1: Representa unidades iguales y partes del mismo tamaño.", "C2: Identifica y explica numerador y denominador.", "C3: Construye equivalencias aplicando el mismo factor.", "C4: Justifica con gráficos y procedimientos numéricos."];
+  for (let start = 0; start < rows.length; start += 12) {
+    const page = document.createElement("section");
+    page.className = "print-page roster-print-page";
+    const header = document.createElement("header"); header.className = "document-header";
+    const title = document.createElement("h2"); title.textContent = "LISTA DE COTEJO · FRACCIONES EQUIVALENTES";
+    header.append(title); page.append(header);
+    const meta = document.createElement("p");
+    const readField = key => document.querySelector('[data-session-field="' + key + '"]')?.textContent || "________";
+    meta.textContent = "Institución: " + readField("institucion") + " · Docente: " + readField("docente") + " · 1.° de secundaria · Sección: " + readField("seccion") + " · Fecha: " + readField("fecha");
+    page.append(meta);
+    const list = document.createElement("ul");
+    criteria.forEach(text => { const li = document.createElement("li"); li.textContent = text; list.append(li); });
+    page.append(list);
+    const note = document.createElement("p"); note.textContent = "Sí / No / No observado. Evidencia: ficha de trabajo y explicación del estudiante."; page.append(note);
+    const table = document.createElement("table"); table.className = "document-table saved-roster-table";
+    const thead = document.createElement("thead"); const heading = document.createElement("tr");
+    ["N.°","Apellidos y nombres","C1","C2","C3","C4","Observaciones"].forEach(text => { const th = document.createElement("th"); th.scope = "col"; th.textContent = text; heading.append(th); });
+    thead.append(heading); table.append(thead);
+    const tbody = document.createElement("tbody");
+    rows.slice(start,start+12).forEach((row,i) => {
+      const tr = document.createElement("tr");
+      const marks = Array.from({length:4}, (_,c) => ["Sí","No","No observado"].includes(row.marks?.[c]) ? row.marks[c] : "");
+      [String(start+i+1),row.name.slice(0,180),...marks,typeof row.notes === "string" ? row.notes.slice(0,250) : ""].forEach(text => { const td = document.createElement("td"); td.textContent = text; tr.append(td); });
+      tbody.append(tr);
+    });
+    table.append(tbody); page.append(table);
+    const footer = document.createElement("footer"); footer.textContent = "MATEMÁTICA · Lista de cotejo · " + (start/12+1) + " de " + Math.ceil(rows.length/12); page.append(footer);
+    container.append(page);
+  }
+}
