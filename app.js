@@ -184,7 +184,8 @@ function prepareSavedRoster() {
   if (!rows.length) rows = Array.from({length:20}, () => ({name:"",marks:[],notes:""}));
   container.replaceChildren();
   const criteria = ["C1: Representa unidades iguales y partes del mismo tamaño.", "C2: Identifica y explica numerador y denominador.", "C3: Construye equivalencias aplicando el mismo factor.", "C4: Justifica con gráficos y procedimientos numéricos."];
-  for (let start = 0; start < rows.length; start += 12) {
+  const rowsPerPage = 20; // Una clase de 20 estudiantes ocupa una hoja A4.
+  for (let start = 0; start < rows.length; start += rowsPerPage) {
     const page = document.createElement("section");
     page.className = "print-page roster-print-page";
     const header = document.createElement("header"); header.className = "document-header";
@@ -203,14 +204,14 @@ function prepareSavedRoster() {
     ["N.°","Apellidos y nombres","C1","C2","C3","C4","Observaciones"].forEach(text => { const th = document.createElement("th"); th.scope = "col"; th.textContent = text; heading.append(th); });
     thead.append(heading); table.append(thead);
     const tbody = document.createElement("tbody");
-    rows.slice(start,start+12).forEach((row,i) => {
+    rows.slice(start,start+rowsPerPage).forEach((row,i) => {
       const tr = document.createElement("tr");
       const marks = Array.from({length:4}, (_,c) => ["Sí","No","No observado"].includes(row.marks?.[c]) ? row.marks[c] : "");
       [String(start+i+1),row.name.slice(0,180),...marks,typeof row.notes === "string" ? row.notes.slice(0,250) : ""].forEach(text => { const td = document.createElement("td"); td.textContent = text; tr.append(td); });
       tbody.append(tr);
     });
     table.append(tbody); page.append(table);
-    const footer = document.createElement("footer"); footer.textContent = "MATEMÁTICA · Lista de cotejo · " + (start/12+1) + " de " + Math.ceil(rows.length/12); page.append(footer);
+    const footer = document.createElement("footer"); footer.textContent = "MATEMÁTICA · Lista de cotejo · " + (start/rowsPerPage+1) + " de " + Math.ceil(rows.length/rowsPerPage); page.append(footer);
     container.append(page);
   }
 }
