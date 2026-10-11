@@ -191,3 +191,15 @@
   .saved-roster-table th:nth-child(7) { width: 36%; }
   .saved-roster-table td { min-height: 8mm; padding: 2mm 1mm; white-space: pre-wrap; }
 }
+
+/* 16. COTEJO: veinte filas en A4; el texto largo conserva su contenido. */
+@media print {
+  .roster-print-page .document-header { margin-bottom: 3mm; padding-bottom: 2mm; }
+  .roster-print-page > ul { margin-top: 2mm; padding-left: 5mm; }
+  .roster-print-page > ul li + li { margin-top: 1mm; }
+  .roster-print-page > p { margin-bottom: 2mm; line-height: 1.25; }
+  .saved-roster-table { margin-top: 3mm; line-height: 1.2; }
+  .saved-roster-table td { height: 7mm; padding: 1mm; vertical-align: middle; }
+  .saved-roster-table th { padding: 1.5mm 1mm; }
+  .roster-print-page footer { margin-top: 3mm; }
+}
