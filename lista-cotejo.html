@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lista de cotejo · Fracciones equivalentes</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lista de cotejo · Fracciones en situaciones cotidianas</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f1f5f9;color:#20384c;font:14px/1.5 Arial,sans-serif}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:26px}h2{font-size:18px}.panel,.paper{background:white;border:1px solid #cbd8e3;border-radius:12px;padding:22px;margin:18px 0}.toolbar{display:flex;gap:12px;flex-wrap:wrap}button,a{color:#075e9c}button{cursor:pointer;background:#edf5fb;border:1px solid #a9c6db;border-radius:6px;padding:10px 14px;font:inherit}input,textarea,select{font:inherit;max-width:100%}label{display:block;margin:12px 0 5px;font-weight:bold}#names{width:100%;min-height:150px;padding:10px}#columns{width:100%;min-height:90px}#sheet{padding:8px}#status{min-height:24px;color:#155c46}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:900px;table-layout:fixed}th,td{border:1px solid #728fa5;padding:7px;vertical-align:top;overflow-wrap:anywhere}th{background:#d7e8f5}th:nth-child(1){width:4%}th:nth-child(2){width:25%}th:last-child{width:23%}td select,td textarea{width:100%;font-size:12px}td textarea{resize:vertical}.print-value{display:none}.criteria{font-size:13px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e2a329;outline-offset:2px}
 @media print{@page{size:A4 portrait;margin:12mm}body{background:white;color:black}main{padding:0;max-width:none}.panel,.toolbar,.back{display:none}.paper{border:0;padding:0;margin:0}.table-scroll{overflow:visible}table{min-width:0;font-size:9pt}td{height:9mm}td select,td textarea{display:none}.print-value{display:block;white-space:pre-wrap}thead{display:table-header-group}tr{break-inside:avoid}h1{font-size:16pt}.criteria{font-size:9pt}th{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
@@ -10,14 +10,14 @@
 <label for="names">Revisa o escribe los nombres · uno por línea</label><textarea id="names" placeholder="Pega aquí los nombres, sin números de lista."></textarea>
 <p>Aplicar nombres reemplaza la lista y borra las marcas anteriores. Pulsa Guardar lista de cotejo para conservar nombres, marcas y observaciones en este navegador. Después imprime la sesión completa: la lista aparecerá antes del anexo. La lectura de Excel requiere internet para cargar el lector.</p>
 <div class="toolbar"><button id="apply" type="button">Aplicar nombres</button><button id="clear" type="button">Dejar lista vacía</button><button id="save-roster" type="button">Guardar lista de cotejo</button><a href="index.html">Volver a la sesión para imprimir / guardar PDF</a></div><p id="status" role="status" aria-live="polite"></p></div>
-<section class="paper"><h1>Lista de cotejo · Fracciones equivalentes</h1><p>Institución: <span id="meta-institucion">________________</span><br>Docente: <span id="meta-docente">________________</span> · 1.° de secundaria · Sección: <span id="meta-seccion">____</span> · Fecha: <span id="meta-fecha">____</span></p>
-<p><strong>Competencia:</strong> Resuelve problemas de cantidad. <strong>Evidencia:</strong> ficha de trabajo y explicación del estudiante.</p>
-<ol class="criteria"><li><strong>C1:</strong> Representa unidades del mismo tamaño y partes iguales.</li><li><strong>C2:</strong> Identifica y explica numerador y denominador.</li><li><strong>C3:</strong> Construye fracciones equivalentes aplicando el mismo factor.</li><li><strong>C4:</strong> Justifica con gráficos y procedimientos numéricos.</li></ol>
+<section class="paper"><h1>Lista de cotejo · Fracciones en situaciones cotidianas</h1><p>Institución: <span id="meta-institucion">________________</span><br>Docente: <span id="meta-docente">________________</span> · Unidad <span id="meta-unidad">V</span> · Primero <span id="meta-seccion">A</span> · Fecha: <span id="meta-fecha">02 / 11 / 2026</span> · Equipo <span id="meta-equipo">2</span></p>
+<p><strong>Competencia:</strong> Resuelve problemas de cantidad. <strong>Evidencia:</strong> resolución de problemas sobre fracciones relacionadas con la vida cotidiana, ficha de trabajo y explicación del estudiante.</p>
+<ol class="criteria"><li><strong>C1:</strong> Traduce la situación e identifica el total o unidad de referencia.</li><li><strong>C2:</strong> Representa y explica fracciones, incluido numerador y denominador.</li><li><strong>C3:</strong> Compara fracciones o reconoce equivalencias con una estrategia.</li><li><strong>C4:</strong> Justifica con una representación y un cálculo.</li></ol>
 <p>Marcar Sí / No / No observado. Registrar retroalimentación en Observaciones.</p>
 <div class="table-scroll"><table><thead><tr><th>N.°</th><th>Apellidos y nombres</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>Observaciones</th></tr></thead><tbody id="roster-body"></tbody></table></div></section>
 </main><script>"use strict";
 /* 01. Criterios de la sesión y nombres temporales; no se envían a un servidor. */
-const criteria = ["Representa unidades del mismo tamaño y partes iguales.", "Identifica y explica numerador y denominador.", "Construye fracciones equivalentes aplicando el mismo factor.", "Justifica con gráficos y procedimientos numéricos."];
+const criteria = ["Traduce la situación e identifica el total o unidad de referencia.", "Representa y explica fracciones, incluido numerador y denominador.", "Compara fracciones o reconoce equivalencias con una estrategia.", "Justifica con una representación y un cálculo."];
 const $ = id => document.getElementById(id);
 let workbook = null;
 let libraryPromise;
@@ -140,20 +140,21 @@ $("save-roster").addEventListener("click", () => {
     notes: row.querySelector("textarea").value
   }));
   try {
-    localStorage.setItem("sesion-fracciones-cotejo-v1", JSON.stringify({version:1,rows}));
+    localStorage.setItem("sesion-fracciones-cotejo-v2", JSON.stringify({version:1,rows}));
     setStatus("Lista guardada con sus modificaciones. Vuelve a la sesión y pulsa Imprimir / Guardar PDF.");
   } catch { setStatus("No se pudo guardar en este navegador. No cierres esta página; permite el almacenamiento local e inténtalo otra vez."); }
 });
+const sessionDefaults = { institucion:"", docente:"", unidad:"V", seccion:"A", fecha:"2026-11-02", equipo:"2" };
 try {
-  const data = JSON.parse(localStorage.getItem("sesion-fracciones-datos-v1") || "{}");
-  for (const key of ["institucion","docente","seccion","fecha"]) {
-    let value = typeof data?.[key] === "string" ? data[key] : "";
+  const data = { ...sessionDefaults, ...JSON.parse(localStorage.getItem("sesion-fracciones-datos-v2") || "{}") };
+  for (const key of ["institucion","docente","unidad","seccion","fecha","equipo"]) {
+    let value = typeof data?.[key] === "string" ? data[key].trim() : "";
     if (key === "fecha" && /^\d{4}-\d{2}-\d{2}$/.test(value)) value = value.split("-").reverse().join("/");
-    $("meta-"+key).textContent = value || "________________";
+    $("meta-"+key).textContent = value || (key === "institucion" || key === "docente" ? "________________" : sessionDefaults[key]);
   }
-} catch { /* Se conservan los espacios vacíos. */ }
+} catch { /* Se conservan los datos predeterminados de la sesión. */ }
 try {
-  const saved = JSON.parse(localStorage.getItem("sesion-fracciones-cotejo-v1") || "null");
+  const saved = JSON.parse(localStorage.getItem("sesion-fracciones-cotejo-v2") || "null");
   if (saved && Array.isArray(saved.rows) && saved.rows.length <= 200) {
     const rows = saved.rows.filter(row => row && typeof row.name === "string");
     renderRoster(rows.map(row => row.name.slice(0,180)), rows);
