@@ -219,3 +219,83 @@ function prepareSavedRoster() {
     container.append(page);
   }
 }
+
+/* 11. RETO LÓGICO Y RECURSOS · enlaces persistentes y archivo local temporal. */
+const LOGIC_RESOURCE_KEY = "sesion-equipo2-recursos-v1";
+const resourceFields = ["presentacion", "recurso", "archivo"];
+let logicResources = {};
+let localResourceUrl = "";
+let localResourceName = "";
+
+function validResourceUrl(value) {
+  try {
+    const url = new URL(String(value || "").trim());
+    return /^https?:$/.test(url.protocol) ? url.href : "";
+  } catch { return ""; }
+}
+function loadLogicResources() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LOGIC_RESOURCE_KEY) || "{}");
+    return Object.fromEntries(resourceFields.map(key => [key, validResourceUrl(saved[key])]));
+  } catch { return {}; }
+}
+function renderLogicResources() {
+  const area = document.querySelector("#logic-resources");
+  const list = document.querySelector("#logic-resource-links");
+  if (!area || !list) return;
+  list.replaceChildren();
+  const labels = { presentacion: "Presentación", recurso: "Actividad o video", archivo: "Archivo enlazado" };
+  resourceFields.forEach(key => {
+    const url = validResourceUrl(logicResources[key]);
+    if (!url) return;
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = url; link.target = "_blank"; link.rel = "noopener noreferrer";
+    link.textContent = labels[key]; item.append(link); list.append(item);
+  });
+  if (localResourceUrl) {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = localResourceUrl; link.download = localResourceName;
+    link.textContent = "Archivo temporal: " + localResourceName;
+    item.append(link); list.append(item);
+  }
+  area.hidden = !list.childElementCount;
+}
+logicResources = loadLogicResources();
+renderLogicResources();
+
+settingsButton.addEventListener("click", () => {
+  resourceFields.forEach(key => {
+    const field = settingsForm.elements.namedItem(key);
+    if (field) field.value = logicResources[key] || "";
+  });
+});
+settingsForm.addEventListener("submit", () => {
+  const next = {};
+  resourceFields.forEach(key => { next[key] = validResourceUrl(settingsForm.elements.namedItem(key)?.value); });
+  logicResources = next;
+  try { localStorage.setItem(LOGIC_RESOURCE_KEY, JSON.stringify(logicResources)); } catch {}
+  const file = settingsForm.elements.namedItem("archivo-local")?.files?.[0];
+  if (file) {
+    if (localResourceUrl) URL.revokeObjectURL(localResourceUrl);
+    localResourceUrl = URL.createObjectURL(file);
+    localResourceName = file.name;
+  }
+  renderLogicResources();
+});
+
+const logicDialog = document.querySelector("#reto-logico-dialog");
+const logicButton = document.querySelector("#reto-logico");
+logicButton?.addEventListener("click", () => logicDialog?.showModal());
+logicDialog?.addEventListener("close", () => logicButton?.focus());
+document.querySelector("#mostrar-pista")?.addEventListener("click", () => {
+  document.querySelector("#reto-feedback").textContent = "Pista: representa dos números impares como 2a + 1 y 2b + 1.";
+});
+document.querySelector("#validar-reto")?.addEventListener("click", () => {
+  const choice = document.querySelector('input[name="reto-respuesta"]:checked')?.value;
+  const feedback = document.querySelector("#reto-feedback");
+  if (!choice) feedback.textContent = "Selecciona una respuesta y luego justifica tu idea.";
+  else if (choice === "no") feedback.textContent = "Correcto: los ejemplos orientan, pero la demostración general confirma que ocurre para todos los impares.";
+  else feedback.textContent = "Los ejemplos ayudan a sospecharlo, pero no bastan. Revisa la pista y expresa dos impares de forma general.";
+});
