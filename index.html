@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sesión de aprendizaje de Matemática sobre fracciones en situaciones cotidianas.">
   <title>Fracciones cotidianas | Sesión de aprendizaje</title>
-  <link rel="stylesheet" href="styles.css?v=unidad-v-20261111">
-  <script src="app.js?v=unidad-v-20261111" defer></script>
+  <link rel="stylesheet" href="styles.css?v=reto-logico-1">
+  <script src="app.js?v=reto-logico-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -14,6 +14,7 @@
 <header class="hero">
   <nav class="topbar wrap" aria-label="Navegación principal">
     <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a>
+    <button class="print-button reto-button" id="reto-logico" type="button" aria-haspopup="dialog">Reto lógico</button>
     <button class="print-button" id="configurar-datos" type="button" aria-haspopup="dialog" aria-label="Configurar datos de la sesión" title="Configurar datos"><span aria-hidden="true">⚙</span></button>
     <button class="print-button" id="imprimir" type="button">Imprimir / Guardar PDF <span aria-hidden="true">↗</span></button>
   </nav>
@@ -254,10 +255,55 @@
       <div><label for="dato-fecha">Fecha de la sesión</label><input id="dato-fecha" name="fecha" type="date" value="2026-11-02" min="1900-01-01" max="2100-12-31"></div>
       <div><label for="dato-equipo">Equipo</label><input id="dato-equipo" name="equipo" maxlength="20" value="2"></div>
     </div>
+<fieldset class="resource-settings">
+      <legend>Recursos del reto lógico</legend>
+      <p>Agrega enlaces públicos o un archivo para consultar durante esta sesión.</p>
+      <label for="dato-presentacion">Enlace de presentación</label>
+      <input id="dato-presentacion" name="presentacion" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-recurso">Enlace de actividad o video</label>
+      <input id="dato-recurso" name="recurso" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-archivo">Enlace de archivo (PDF, Drive u otro)</label>
+      <input id="dato-archivo" name="archivo" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-archivo-local">Archivo temporal</label>
+      <input id="dato-archivo-local" name="archivo-local" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt">
+      <small>El archivo local se abre solo en este navegador y no se publica en GitHub Pages.</small>
+    </fieldset>
     <p class="settings-note">Área: Matemática · grado: Primero · duración: 90 minutos. Se guardan solo en este navegador.</p>
     <div class="settings-actions"><button id="cancelar-datos" type="button">Cancelar</button><button type="submit" class="settings-save">Guardar datos</button></div>
   </form>
 </dialog>
 <p id="datos-status" class="settings-toast" role="status" aria-live="polite"></p>
+<!-- 09. RETO LÓGICO · contenido y recursos configurables del Equipo 2. -->
+<dialog id="reto-logico-dialog" class="resource-dialog logic-dialog" aria-labelledby="reto-title">
+  <div class="resource-dialog-actions"><button type="button" data-close-resource aria-label="Cerrar reto lógico">Cerrar ×</button></div>
+  <header class="logic-header">
+    <p class="eyebrow">EQUIPO 2 · RAZONAR, ARGUMENTAR Y DEMOSTRAR</p>
+    <h2 id="reto-title">Reto lógico: ¿los ejemplos bastan?</h2>
+    <p>Explora cómo una afirmación matemática necesita una justificación general, no solo algunos casos.</p>
+  </header>
+  <section class="logic-grid" aria-label="Propósitos del reto">
+    <article><h3>Razonar</h3><p>Reconoce patrones y formula conjeturas a partir de ejemplos.</p></article>
+    <article><h3>Argumentar</h3><p>Explica por qué una conclusión es válida con lenguaje matemático claro.</p></article>
+    <article><h3>Demostrar</h3><p>Usa una representación general para validar una afirmación.</p></article>
+  </section>
+  <section class="logic-challenge">
+    <h3>Desafío</h3>
+    <p>La suma de dos números impares siempre es par. Observa: 3 + 5 = 8 y 7 + 9 = 16. ¿Estos ejemplos son suficientes para demostrar que ocurre siempre?</p>
+    <div class="logic-options">
+      <label><input type="radio" name="reto-respuesta" value="si"> Sí, dos ejemplos demuestran la afirmación.</label>
+      <label><input type="radio" name="reto-respuesta" value="no"> No, se necesita una justificación general.</label>
+    </div>
+    <label for="reto-explicacion">Explica tu idea</label>
+    <textarea id="reto-explicacion" rows="3" maxlength="500" placeholder="Escribe cómo comprobarías la afirmación…"></textarea>
+    <div class="logic-actions"><button type="button" id="validar-reto">Revisar respuesta</button><button type="button" id="mostrar-pista">Ver pista</button></div>
+    <p id="reto-feedback" class="logic-feedback" role="status" aria-live="polite"></p>
+    <details><summary>Ver demostración</summary><p>Todo impar puede escribirse como 2a + 1. Entonces: (2a + 1) + (2b + 1) = 2(a + b + 1), que es múltiplo de 2; por eso la suma siempre es par.</p></details>
+  </section>
+  <section class="logic-connections">
+    <h3>Conexiones para la formación docente</h3>
+    <p>Relaciona el razonamiento lógico con historia y filosofía de las matemáticas, lenguaje matemático, ciudadanía digital, tecnología y enseñanza.</p>
+    <div id="logic-resources" hidden><h3>Recursos agregados</h3><ul id="logic-resource-links"></ul></div>
+  </section>
+</dialog>
 </body>
 </html>
