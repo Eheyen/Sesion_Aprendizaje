@@ -1,6 +1,6 @@
 # Sesión de aprendizaje · Fracciones
 
-Página educativa responsive en español, basada en la referencia visual proporcionada.
+Página educativa responsive en español. La sesión 14 de la Unidad V desarrolla fracciones en situaciones cotidianas con estudiantes de primero de secundaria.
 
 ## Abrir la página
 Descarga el repositorio y abre `index.html` en tu navegador. No requiere instalación ni compilación.
