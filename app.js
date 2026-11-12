@@ -97,9 +97,10 @@ resetSimulation();
 
 /* 07. DATOS DE LA SESIÓN · localStorage y texto seguro para impresión.
    Cancelar o Escape descarta la edición; guardar actualiza la plantilla. */
-const SETTINGS_KEY = "sesion-fracciones-datos-v1";
-const sessionKeys = ["institucion", "docente", "seccion", "fecha"];
-const limits = { institucion: 120, docente: 100, seccion: 30, fecha: 10 };
+const SETTINGS_KEY = "sesion-fracciones-datos-v2";
+const sessionKeys = ["institucion", "docente", "unidad", "seccion", "fecha", "equipo"];
+const limits = { institucion: 120, docente: 100, unidad: 20, seccion: 30, fecha: 10, equipo: 20 };
+const defaultSessionData = { institucion: "", docente: "", unidad: "V", seccion: "A", fecha: "2026-11-02", equipo: "2" };
 function normalizeSessionData(input) {
   const data = {};
   for (const key of sessionKeys) {
@@ -108,8 +109,11 @@ function normalizeSessionData(input) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(data.fecha)) data.fecha = "";
   return data;
 }
-let sessionData = normalizeSessionData({});
-try { sessionData = normalizeSessionData(JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}")); } catch { /* El formulario funciona incluso sin almacenamiento. */ }
+let sessionData = normalizeSessionData(defaultSessionData);
+try {
+  const stored = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "null");
+  if (stored && typeof stored === "object") sessionData = normalizeSessionData({ ...defaultSessionData, ...stored });
+} catch { /* Se conservan los datos de la sesión si el almacenamiento falla. */ }
 const settingsDialog = document.querySelector("#datos-dialog");
 const settingsForm = document.querySelector("#datos-form");
 const settingsButton = document.querySelector("#configurar-datos");
@@ -119,7 +123,7 @@ function applySessionData() {
   for (const key of sessionKeys) {
     let value = sessionData[key];
     if (key === "fecha" && value) value = value.split("-").reverse().join(" / ");
-    const placeholder = key === "fecha" ? "____ / ____ / ______" : "____________________________";
+    const placeholder = key === "fecha" ? "____ / ____ / ______" : key === "unidad" ? "V" : key === "seccion" ? "A" : key === "equipo" ? "2" : "____________________________";
     document.querySelectorAll('[data-session-field="' + key + '"]').forEach(cell => {
       cell.textContent = value || placeholder;
     });
@@ -178,22 +182,22 @@ function prepareSavedRoster() {
   if (!container) return;
   let rows = [];
   try {
-    const saved = JSON.parse(localStorage.getItem("sesion-fracciones-cotejo-v1") || "null");
+    const saved = JSON.parse(localStorage.getItem("sesion-fracciones-cotejo-v2") || "null");
     if (Array.isArray(saved?.rows)) rows = saved.rows.slice(0,200).filter(row => row && typeof row.name === "string");
   } catch { /* Sin datos guardados, imprimir una lista en blanco. */ }
   if (!rows.length) rows = Array.from({length:20}, () => ({name:"",marks:[],notes:""}));
   container.replaceChildren();
-  const criteria = ["C1: Representa unidades iguales y partes del mismo tamaño.", "C2: Identifica y explica numerador y denominador.", "C3: Construye equivalencias aplicando el mismo factor.", "C4: Justifica con gráficos y procedimientos numéricos."];
+  const criteria = ["C1: Traduce la situación e identifica el total o unidad de referencia.", "C2: Representa y explica fracciones, incluido numerador y denominador.", "C3: Compara fracciones o reconoce equivalencias con una estrategia.", "C4: Justifica con representación y cálculo."];
   const rowsPerPage = 20; // Una clase de 20 estudiantes ocupa una hoja A4.
   for (let start = 0; start < rows.length; start += rowsPerPage) {
     const page = document.createElement("section");
     page.className = "print-page roster-print-page";
     const header = document.createElement("header"); header.className = "document-header";
-    const title = document.createElement("h2"); title.textContent = "LISTA DE COTEJO · FRACCIONES EQUIVALENTES";
+    const title = document.createElement("h2"); title.textContent = "LISTA DE COTEJO · FRACCIONES EN SITUACIONES COTIDIANAS";
     header.append(title); page.append(header);
     const meta = document.createElement("p");
     const readField = key => document.querySelector('[data-session-field="' + key + '"]')?.textContent || "________";
-    meta.textContent = "Institución: " + readField("institucion") + " · Docente: " + readField("docente") + " · 1.° de secundaria · Sección: " + readField("seccion") + " · Fecha: " + readField("fecha");
+    meta.textContent = "I.E.: " + readField("institucion") + " · Docente: " + readField("docente") + " · Unidad " + readField("unidad") + " · Primero " + readField("seccion") + " · Fecha: " + readField("fecha") + " · Equipo " + readField("equipo");
     page.append(meta);
     const list = document.createElement("ul");
     criteria.forEach(text => { const li = document.createElement("li"); li.textContent = text; list.append(li); });
@@ -211,7 +215,7 @@ function prepareSavedRoster() {
       tbody.append(tr);
     });
     table.append(tbody); page.append(table);
-    const footer = document.createElement("footer"); footer.textContent = "MATEMÁTICA · Lista de cotejo · " + (start/rowsPerPage+1) + " de " + Math.ceil(rows.length/rowsPerPage); page.append(footer);
+    const footer = document.createElement("footer"); footer.textContent = "MATEMÁTICA · Unidad V · Lista de cotejo · " + (start/rowsPerPage+1) + " de " + Math.ceil(rows.length/rowsPerPage); page.append(footer);
     container.append(page);
   }
 }
