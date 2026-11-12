@@ -203,3 +203,32 @@
   .saved-roster-table th { padding: 1.5mm 1mm; }
   .roster-print-page footer { margin-top: 3mm; }
 }
+
+/* 17. DATOS DE LA SESIÓN Y SITUACIÓN COTIDIANA. */
+.session-data-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid #6f99b1; border-radius: 8px; }
+.session-data-table { width: 100%; min-width: 620px; border-collapse: collapse; background: white; font-size: 12px; }
+.session-data-table caption { padding: 10px 14px; text-align: left; color: #155b8a; font-weight: 800; background: #edf6fe; }
+.session-data-table th, .session-data-table td { padding: 9px 12px; border: 1px solid #a8bfce; }
+.session-data-table th { width: 16%; background: #0b4d7b; color: white; font-size: 10px; text-transform: uppercase; }
+.session-data-table td { width: 34%; }
+.content-math { margin-top: 14px; padding: 13px 15px; background: #eef6fb; border-left: 4px solid #0b83b5; border-radius: 6px; font-size: 13px; }
+.money-comparison { display: flex; justify-content: center; gap: 26px; margin: 19px 0 12px; text-align: center; }
+.money-comparison > div { display: grid; gap: 7px; justify-items: center; }
+.money-comparison .fraction-bar { width: 130px; height: 32px; border-color: #497999; }
+.money-comparison .fraction-bar i + i { border-color: #497999; }
+.money-comparison .fraction-bar .filled { background: #55a6d4; }
+.money-comparison .four-parts { width: 150px; }
+.money-comparison span { font-size: 12px; font-weight: 700; }
+@media(max-width:600px) {
+  .money-comparison { gap: 12px; }
+  .money-comparison .fraction-bar { width: 112px; }
+  .money-comparison .four-parts { width: 130px; }
+  .content-math { font-size: 12px; }
+}
+@media print {
+  .session-data-scroll { overflow: visible; border: 0; }
+  .session-data-table { min-width: 0; font-size: 9pt; }
+  .session-data-table caption { background: transparent; padding: 1mm 0; }
+  .session-data-table th, .session-data-table td { padding: 2mm; }
+  .content-math { padding: 2mm; font-size: 9pt; }
+}
