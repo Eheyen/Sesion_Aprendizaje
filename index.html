@@ -6,7 +6,23 @@
   <meta name="description" content="Estación académica virtual Mente Matemática del Equipo 2.">
   <title>¡Mente Matemática! | Equipo 2</title>
   <link rel="stylesheet" href="station.css?v=images-layout-1">
-  <script src="station.js?v=retos-actualizados-2" defer></script>
+  <style>
+    /* Presentación del Reto 2 según el diseño de referencia */
+    .pattern-challenge { background:#050505; color:#f4f4f4; border:1px solid #292929; border-radius:14px; padding:18px; }
+    .pattern-challenge .challenge-number { color:#d8d8d8; letter-spacing:.02em; }
+    .pattern-challenge .pattern-sequence { text-align:center; font-size:clamp(1.35rem,3vw,1.9rem); letter-spacing:.04em; margin:18px 0 12px; color:#f7f7f7; }
+    .pattern-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+    .pattern-options label { display:block; cursor:pointer; margin:0; }
+    .pattern-options input { position:absolute; opacity:0; pointer-events:none; }
+    .pattern-options span { display:flex; min-height:48px; align-items:center; justify-content:center; border:1px solid #292929; border-radius:9px; color:#ededed; font-weight:700; background:#050505; transition:background .18s,border-color .18s; }
+    .pattern-options input:checked + span { background:#183b61; border-color:#3988d4; color:#fff; }
+    .pattern-options label:hover span { border-color:#777; }
+    .pattern-check { margin-top:12px; }
+    .pattern-instruction { color:#bdbdbd; font-size:.82rem; margin:10px 0 0; }
+    .pattern-challenge .feedback { color:#f4f4f4; }
+    @media(max-width:520px) { .pattern-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  </style>
+  <script src="station.js?v=reto2-opciones-3" defer></script>
 </head>
 <body>
 <a class="skip" href="#inicio">Saltar al contenido</a>
@@ -39,7 +55,19 @@
   <section class="section challenge-section escape-room" id="desafios"><div class="container"><div class="challenge-heading"><div><p class="section-kicker">COMPONENTE 4 · RETO INTERACTIVO</p><h2>¡Descifra el código secreto!</h2><p>En el laboratorio de informática hay una caja fuerte que protege materiales tecnológicos. Resuelve los cuatro desafíos para abrirla.</p></div><div class="challenge-tools"><div class="score" aria-live="polite"><span>Progreso</span><strong id="score">0 / 4</strong></div><button class="teacher-access" id="open-teacher-access" type="button">ACCESO DOCENTE 🔒</button></div></div>
 <div class="stage-progress" aria-label="Progreso de cuatro retos"><span class="stage-status available" data-stage-status="1">1 · Disponible</span><span class="stage-status" data-stage-status="2">2 · Bloqueado</span><span class="stage-status" data-stage-status="3">3 · Bloqueado</span><span class="stage-status" data-stage-status="4">4 · Bloqueado</span></div>
 <article class="public-stage safe-challenge" data-stage="1"><div class="safe-visual" aria-hidden="true"><div class="safe-dial">?</div><span class="safe-handle"></span><span class="safe-led"></span><p>CAJA SEGURA</p></div><div class="safe-content"><span class="challenge-number">RETO 1 · DISPONIBLE</span><h3>Descifra el código</h3><div class="clue-grid"><article><b>PISTA 1</b><p>La primera cifra es el doble de la tercera.</p></article><article><b>PISTA 2</b><p>La segunda cifra es una unidad mayor que la tercera.</p></article><article><b>PISTA 3</b><p>La suma de las tres cifras es 17.</p></article></div><div class="relations"><span>A = 2C</span><span>B = C + 1</span><span>A + B + C = 17</span></div><label for="secret-code">Ingresa el código de tres cifras</label><div class="code-row"><input id="secret-code" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" placeholder="___"><button id="check-code" type="button">Probar código</button></div><p id="code-feedback" class="feedback" aria-live="polite"></p><div class="hint-row"><button class="hint-button" data-hint="1" type="button">Pista progresiva 1</button><button class="hint-button" data-hint="2" type="button">Pista progresiva 2</button><button class="hint-button" data-hint="3" type="button">Pista progresiva 3</button></div><p id="hint-feedback" class="hint-feedback" aria-live="polite"></p></div></article>
-<article class="public-stage challenge-card locked" data-stage="2" hidden><span class="challenge-number">RETO 2 · BLOQUEADO</span><h3>Descubre el patrón</h3><p>2, 6, 12, 20, 30, ?</p><label for="pattern-answer">¿Cuál es el siguiente término?</label><div class="answer-row"><input id="pattern-answer" inputmode="numeric" placeholder="Número"><button id="check-pattern" type="button">Comprobar</button></div><label for="pattern-reason">¿Qué regla utilizaste?</label><textarea id="pattern-reason" rows="2" maxlength="350" placeholder="Explica tu regla…"></textarea><p id="pattern-feedback" class="feedback" aria-live="polite"></p></article>
+<article class="public-stage challenge-card locked pattern-challenge" data-stage="2" hidden>
+  <span class="challenge-number">RETO 2 · DESCUBRE EL PATRÓN</span>
+  <h3 class="pattern-sequence">2 – 6 – 12 – 20 – 30 – ?</h3>
+  <div class="pattern-options" role="radiogroup" aria-label="Selecciona el siguiente término">
+    <label><input type="radio" name="pattern-answer" value="36"><span>36</span></label>
+    <label><input type="radio" name="pattern-answer" value="40"><span>40</span></label>
+    <label><input type="radio" name="pattern-answer" value="42"><span>42</span></label>
+    <label><input type="radio" name="pattern-answer" value="44"><span>44</span></label>
+  </div>
+  <button id="check-pattern" class="pattern-check" type="button">Comprobar respuesta</button>
+  <p class="pattern-instruction">Seleccionar una respuesta y comprobar.</p>
+  <p id="pattern-feedback" class="feedback" aria-live="polite"></p>
+</article>
 
 <article class="public-stage challenge-card locked" data-stage="3" hidden>
   <span class="challenge-number">RETO 3 · BLOQUEADO</span>
