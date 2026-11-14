@@ -1,23 +1,44 @@
 /* MENTE MATEMÁTICA · controles de Componentes 3 y 4; sin almacenamiento docente */
 "use strict";
 
-/* COMPONENTE 3 · recorrido de las siete sesiones */
-const slides = [...document.querySelectorAll(".session-slide")];
-const dots = [...document.querySelectorAll("[data-session-target]")];
-let activeSession = 1;
-function showSession(index) {
-  activeSession = Math.max(1, Math.min(7, index));
-  slides.forEach(slide => { const active = Number(slide.dataset.session) === activeSession; slide.hidden = !active; slide.classList.toggle("active", active); });
-  dots.forEach(dot => dot.setAttribute("aria-selected", String(Number(dot.dataset.sessionTarget) === activeSession)));
-  document.querySelector("#session-counter").textContent = "Sesión " + activeSession + " de 7";
-  document.querySelector("#session-prev").disabled = activeSession === 1;
-  document.querySelector("#session-next").disabled = activeSession === 7;
+/* COMPONENTE 3 · un único estado controla tarjeta, indicador y navegación. */
+const sessionSlides = Array.from(document.querySelectorAll(".session-slide"));
+const sessionControls = Array.from(document.querySelectorAll("[data-session-target]"));
+const previousSession = document.querySelector("#session-prev");
+const nextSession = document.querySelector("#session-next");
+const sessionCounter = document.querySelector("#session-counter");
+let currentSessionIndex = 0;
+
+function renderCarousel() {
+  sessionSlides.forEach((slide, index) => {
+    const isActive = index === currentSessionIndex;
+    slide.hidden = !isActive;
+    slide.classList.toggle("active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
+  });
+  sessionControls.forEach((control, index) => {
+    const isActive = index === currentSessionIndex;
+    control.setAttribute("aria-selected", String(isActive));
+    control.classList.toggle("active", isActive);
+  });
+  const currentNumber = currentSessionIndex + 1;
+  sessionCounter.textContent = "Sesión " + currentNumber + " de " + sessionSlides.length;
+  previousSession.disabled = currentSessionIndex === 0;
+  nextSession.disabled = currentSessionIndex === sessionSlides.length - 1;
 }
-document.querySelector("#session-prev").addEventListener("click", () => showSession(activeSession - 1));
-document.querySelector("#session-next").addEventListener("click", () => showSession(activeSession + 1));
-dots.forEach(dot => dot.addEventListener("click", () => showSession(Number(dot.dataset.sessionTarget))));
-document.querySelectorAll(".session-media img").forEach(image => image.addEventListener("error", () => { image.hidden = true; image.parentElement.classList.add("image-pending"); }));
-showSession(1);
+function goToSession(index) {
+  if (!Number.isInteger(index) || index < 0 || index >= sessionSlides.length) return;
+  currentSessionIndex = index;
+  renderCarousel();
+}
+previousSession.addEventListener("click", () => goToSession(currentSessionIndex - 1));
+nextSession.addEventListener("click", () => goToSession(currentSessionIndex + 1));
+sessionControls.forEach((control, index) => control.addEventListener("click", () => goToSession(index)));
+document.querySelectorAll(".session-media img").forEach(image => image.addEventListener("error", () => {
+  image.hidden = true;
+  image.parentElement.classList.add("image-pending");
+}));
+goToSession(0);
 
 /* COMPONENTE 4 · vista pública: cuatro retos progresivos */
 const completed = new Set();
