@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sesión de aprendizaje de Matemática sobre fracciones en situaciones cotidianas.">
+  <title>Sesión de fracciones | Mente Matemática</title>
+  <link rel="stylesheet" href="fracciones.css?v=1">
+  <script src="fracciones.js?v=1" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<!-- 01 · CABECERA: cambia aquí el título y los datos de la sesión. -->
+<header class="hero">
+  <nav class="topbar wrap" aria-label="Navegación principal">
+    <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a>
+    <button class="print-button reto-button" id="reto-logico" type="button" aria-haspopup="dialog">Reto lógico</button>
+    <button class="print-button" id="configurar-datos" type="button" aria-haspopup="dialog" aria-label="Configurar datos de la sesión" title="Configurar datos"><span aria-hidden="true">⚙</span></button>
+    <button class="print-button" id="imprimir" type="button">Imprimir / Guardar PDF <span aria-hidden="true">↗</span></button>
+  </nav>
+  <div class="hero-body wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> SESIÓN DE APRENDIZAJE N.° 14 · UNIDAD V</p>
+      <h1>Comprendemos y representamos <em>fracciones cotidianas.</em></h1>
+      <p class="hero-description">Identificamos, comparamos y representamos fracciones<br>para resolver situaciones de la vida cotidiana.</p>
+      <div class="metadata" aria-label="Datos de la sesión">
+        <span>Matemática</span><span>1.° A</span><span>Unidad V</span><span>90 minutos</span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Dos cuartos equivalen a un medio">
+      <div class="visual-top"><span class="window-dots" aria-hidden="true">● ● ●</span><span>EL MISMO VALOR</span></div>
+      <div class="visual-equation">
+        <div><div class="circle circle-quarter"></div><span class="fraction"><b>2</b><b>4</b></span></div>
+        <span class="equal">=</span>
+        <div><div class="circle circle-half"></div><span class="fraction"><b>1</b><b>2</b></span></div>
+      </div>
+      <p><span aria-hidden="true">✦</span> Diferentes partes. La misma cantidad.</p>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="contenido">
+  <!-- 02 · PROPÓSITO DE APRENDIZAJE
+       Referencia: MINEDU, Programa curricular de Educación Secundaria,
+       Matemática, competencia Resuelve problemas de cantidad, ciclo VI.
+       Los desempeños se contextualizan a esta sesión; no son citas literales.
+       Al cambiar de grado, revisar nuevamente los desempeños oficiales. -->
+  <!-- 02 · DATOS Y PROPÓSITOS · adaptado a la sesión 14, Unidad V. -->
+  <section class="curriculum" id="proposito" aria-labelledby="proposito-titulo">
+    <h2 id="proposito-titulo">II. Propósitos del aprendizaje y evaluación</h2>
+    <p class="curriculum-meta">Matemática · 1.° A · Ciclo VI · Unidad V · 2 de noviembre de 2026 · 90 minutos · Equipo 2</p>
+    <div class="session-data-scroll" role="region" aria-label="Datos informativos de la sesión" tabindex="0">
+      <table class="session-data-table">
+        <caption>I. Datos informativos</caption>
+        <tbody>
+          <tr><th>I.E.</th><td data-session-field="institucion">____________________________</td><th>Unidad</th><td data-session-field="unidad">V</td></tr>
+          <tr><th>Área</th><td>Matemática</td><th>Grado / sección</th><td>Primero <span data-session-field="seccion">A</span></td></tr>
+          <tr><th>Fecha</th><td data-session-field="fecha">02 / 11 / 2026</td><th>Duración</th><td>90 minutos</td></tr>
+          <tr><th>Docente</th><td data-session-field="docente">____________________________</td><th>Equipo</th><td data-session-field="equipo">2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="curriculum-intro"><strong>Propósito matemático:</strong> Identificar y comparar situaciones de la vida cotidiana que involucren fracciones, comprendiendo su significado y distinguiendo la fracción de la cantidad total a la que se aplica.</p>
+    <div class="curriculum-scroll" role="region" aria-label="Tabla de propósito de aprendizaje; desplázate horizontalmente en pantallas pequeñas" tabindex="0">
+      <table class="curriculum-table">
+        <caption>Propósitos de aprendizaje, evaluación y evidencia</caption>
+        <thead>
+          <tr><th scope="col">Competencia y capacidades</th><th scope="col">Desempeños precisados</th><th scope="col">Criterios de evaluación</th><th scope="col">Evidencia e instrumento</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Resuelve problemas de cantidad</strong><ul><li>Traduce cantidades a expresiones numéricas.</li><li>Comunica su comprensión sobre los números y las operaciones.</li><li>Usa estrategias y procedimientos de estimación y cálculo.</li><li>Argumenta afirmaciones sobre las relaciones numéricas y las operaciones.</li></ul></td>
+            <td><ul><li>Traduce situaciones cotidianas a expresiones fraccionarias y representa la unidad de referencia.</li><li>Expresa el significado de las fracciones y de la equivalencia mediante lenguaje matemático, gráficos y símbolos.</li><li>Selecciona y emplea estrategias para comparar fracciones y resolver situaciones con fracciones.</li><li>Plantea y justifica afirmaciones sobre relaciones entre números fraccionarios.</li></ul></td>
+            <td><ul><li>Traduce una situación cotidiana a una expresión fraccionaria e identifica el total.</li><li>Explica con representaciones si dos fracciones son equivalentes.</li><li>Elige una estrategia para comparar o resolver la situación.</li><li>Justifica su respuesta con gráficos, cálculos y lenguaje matemático.</li></ul></td>
+            <td><p><strong>Resolución de problemas sobre fracciones relacionadas con la vida cotidiana.</strong></p><p>Ficha de trabajo y explicación del estudiante.</p><p><strong>Instrumento:</strong> lista de cotejo.</p><a href="#lista-cotejo">Ver criterios ↓</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="content-math"><strong>Contenido matemático:</strong> concepto y elementos de la fracción; comparación de fracciones; fracciones equivalentes; operaciones básicas con fracciones en situaciones cotidianas.</div>
+    <details class="assessment" id="lista-cotejo">
+      <summary>Lista de cotejo · criterios para revisar la evidencia</summary>
+      <a class="text-link" href="lista-cotejo.html" target="_blank" rel="noopener noreferrer">Abrir lista de cotejo · Cargar Excel/TXT · Guardar ↗</a>
+      <p>Registrar por estudiante: Sí / No / No observado y observaciones de retroalimentación.</p>
+      <ul><li>Traduce la situación y reconoce el total o unidad de referencia.</li><li>Representa y explica fracciones, incluido numerador y denominador.</li><li>Compara fracciones o reconoce equivalencias mediante una estrategia pertinente.</li><li>Justifica su respuesta con una representación y un cálculo.</li></ul>
+    </details>
+  </section>
+  <nav class="lesson-nav" aria-label="Momentos de la sesión"><a href="#inicio"><span>01</span> Inicio <small>20 min</small></a><a href="#desarrollo"><span>02</span> Desarrollo <small>50 min</small></a><a href="#cierre"><span>03</span> Cierre <small>20 min</small></a></nav>
+  <!-- 03 · MOMENTOS: tres columnas en escritorio y una columna en móvil. -->
+  <div class="lesson-grid">
+    <section class="phase phase-start" id="inicio" aria-labelledby="titulo-inicio">
+      <header class="phase-header"><div><span class="phase-number">01</span><h2 id="titulo-inicio">Inicio</h2></div><span>◷ 20 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>1.1</span><h3>Situación significativa: los ahorros</h3><small>10 min</small></div>
+          <p>Para una actividad del aula, <strong>María</strong> tiene S/ 40 y usa <strong>1/2</strong> de sus ahorros. <strong>José</strong> tiene S/ 80 y usa <strong>2/4</strong> de sus ahorros. María dice que ambos usaron la misma cantidad porque 1/2 y 2/4 son equivalentes; José no está de acuerdo.</p>
+          <div class="money-comparison" aria-label="Comparación entre un medio de cuarenta soles y dos cuartos de ochenta soles"><div><strong>S/ 40</strong><div class="fraction-bar"><i class="filled"></i><i></i></div><span>1/2 de 40 = ¿?</span></div><div><strong>S/ 80</strong><div class="fraction-bar four-parts"><i class="filled"></i><i class="filled"></i><i></i><i></i></div><span>2/4 de 80 = ¿?</span></div></div>
+          <p class="question">¿Quién usó más dinero? ¿Qué son equivalentes: las fracciones, las cantidades de dinero o ambas? Explica.</p>
+          <a class="resource-link" href="figuras-imprimibles.html" target="_blank" rel="noopener noreferrer">✂ Abrir figuras para imprimir / Guardar PDF ↗</a>
+          <p class="muted">Usa las tiras o diagramas antes de calcular. La unidad de referencia puede cambiar el resultado.</p>
+        </article>
+        <article class="activity" id="saberes-previos"><div class="activity-heading"><span>1.2</span><h3>Saberes previos</h3><small>5 min</small></div>
+          <p><strong>Descripción:</strong> Recuperamos ideas sobre la unidad, partes iguales, numerador, denominador y comparación de fracciones.</p>
+          <a class="resource-link" href="https://wordwall.net/es/resource/79321800/fracciones" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎮</span> Cuestionario de saberes previos en Wordwall <span aria-hidden="true">↗</span></a>
+          <details class="learning-resource"><summary>▤ Alternativa sin conexión</summary><div class="resource-body"><ol><li>¿Qué representa 1/2 de S/ 40?</li><li>¿Qué representa 2/4 de S/ 80?</li><li>¿Por qué no basta comparar solo 1/2 y 2/4 para decidir quién gastó más dinero?</li></ol></div></details>
+        </article>
+        <article class="activity challenge"><p class="eyebrow">1.3 · RETO · 5 MIN</p><h3>¿Dos fracciones equivalentes siempre representan la misma cantidad?</h3><p>Escribe una hipótesis. Considera que para responder debes mirar tanto la fracción como el total al que se aplica.</p><div class="challenge-equation" aria-label="Un medio y dos cuartos son fracciones equivalentes">½ <span>=</span> ²⁄₄</div><details class="learning-resource"><summary>✎ Registra tu hipótesis</summary><div class="resource-body"><p>Completa: «1/2 y 2/4 son equivalentes porque ______. Sin embargo, al aplicarlas a S/ 40 y S/ 80, las cantidades serán ______ porque ______».</p></div></details></article>
+      </div>
+    </section>
+    <section class="phase phase-development" id="desarrollo" aria-labelledby="titulo-desarrollo">
+      <header class="phase-header"><div><span class="phase-number">02</span><h2 id="titulo-desarrollo">Desarrollo</h2></div><span>◷ 50 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>2.1</span><h3>Comprendemos el problema</h3><small>15 min</small></div>
+          <p>Relee el problema de los ahorros y explícalo con tus palabras: ¿qué sabemos?, ¿qué debemos averiguar?, ¿cuál es el total en cada caso? Elige cómo representarlo y completa el ejercicio 1 de la ficha.</p>
+          <div class="fraction-anatomy"><span class="fraction"><b>3</b><b>4</b></span><div><p><strong>Numerador</strong><br>Cuántas partes tomamos.</p><p><strong>Denominador</strong><br>En cuántas partes iguales dividimos.</p></div></div>
+          <p>Distingue: 1/2 y 2/4 son equivalentes como fracciones, pero las cantidades de dinero dependen del total. Conserva tu representación para contrastarla con la de otra pareja.</p>
+        <details class="learning-resource"><summary>▶ Video: Introducción a las fracciones</summary><div class="resource-body"><p>Si necesitas reforzar los términos, observa solo ese segmento del video (máximo 3 minutos de reproducción). Luego retoma las figuras y la ficha.</p><iframe class="lesson-video" src="https://www.youtube-nocookie.com/embed/4M7YZNTCWrY" title="Introducción a las fracciones" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><a class="text-link" href="https://www.youtube.com/watch?v=4M7YZNTCWrY" target="_blank" rel="noopener noreferrer">Abrir video en YouTube ↗</a></div></details></article>
+        <article class="activity"><div class="activity-heading"><span>2.2</span><h3>Buscamos y aplicamos estrategias</h3><small>10 min</small></div>
+          <p>Elige una estrategia: superponer figuras, doblar tiras o subdividir las partes. Comprueba 2/3 = 4/6 y completa el ejercicio 2. Luego calcula una fracción de una cantidad usando el total correspondiente. Explica qué ocurre al multiplicar ambos términos por el mismo entero positivo; al simplificar, usa un divisor común.</p>
+          <div class="formula" aria-label="Un medio equivale a dos cuartos y a cuatro octavos"><span>1/2</span><b>× 2 →</b><span>2/4</span><b>× 2 →</b><span>4/8</span></div>
+          <p class="muted">Podemos usar círculos, barras y tablas para verificar el resultado.</p>
+        <details class="learning-resource"><summary>▶ Video: Fracciones equivalentes</summary><div class="resource-body"><p>Observa un ejemplo y pausa. Construye 2/3 = 4/6 con dos barras iguales. Usa como máximo 3 minutos de reproducción dentro de los 10 minutos de la actividad; prioriza resolver y explicar.</p><iframe class="lesson-video" src="https://www.youtube-nocookie.com/embed/osePKL39EBo" title="Fracciones equivalentes" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><a class="text-link" href="https://www.youtube.com/watch?v=osePKL39EBo" target="_blank" rel="noopener noreferrer">Abrir video en YouTube ↗</a></div></details></article>
+        <article class="activity"><div class="activity-heading"><span>2.3</span><h3>Comprobamos y compartimos</h3><small>15 min</small></div>
+          <p>Dedica 10 minutos a comprobar equivalencias en un solo simulador y completar el ejercicio 3. En los 5 minutos restantes, compara tu representación con otra pareja: ¿usaron la misma unidad?, ¿la misma fracción da la misma cantidad si cambia el total?, ¿cómo lo justifican?</p>
+          <a class="text-link" href="#laboratorio" data-open-resource="laboratorio-dialog" aria-haspopup="dialog">Abrir nuestro laboratorio <span aria-hidden="true">↓</span></a>
+          <a class="resource-link" href="https://phet.colorado.edu/es/simulations/build-a-fraction" target="_blank" rel="noopener noreferrer">Recurso adicional: PhET · Construye una fracción ↗</a>
+        <details class="learning-resource"><summary>☷ Guía del simulador</summary><div class="resource-body"><ol><li>Representa 1/2 y 2/4. Compara las áreas.</li><li>Cambia a 2/3 y 4/6.</li><li>Prueba 1/2 y 3/4. Explica por qué no son equivalentes.</li><li>Encuentra otra pareja equivalente y regístrala en la ficha.</li></ol><p>Usa el laboratorio de esta página o el recurso PhET. La conexión es necesaria para abrir los recursos externos.</p><a class="text-link" href="#laboratorio" data-open-resource="laboratorio-dialog" aria-haspopup="dialog">Ir al laboratorio ↓</a></div></details></article>
+        <article class="activity"><div class="activity-heading"><span>2.4</span><h3>Reflexionamos y formalizamos</h3><small>10 min</small></div><ul class="checklist"><li>Acuerden la conclusión: las fracciones equivalentes representan la misma parte de una unidad; la cantidad resultante también depende del total de referencia.</li><li>Completen los ejercicios 4 y 5 de la ficha por parejas.</li><li>Justifiquen la respuesta al reto con un gráfico y un cálculo.</li><li>Compartan y revisen una explicación.</li><li>El docente observa con la lista de cotejo y orienta la corrección de errores.</li></ul><details class="learning-resource"><summary>✎ Tarjetas de trabajo en parejas</summary><div class="resource-body"><p>Si terminan la ficha, elijan una tarjeta de ampliación. Una persona explica y la otra comprueba; luego intercambian roles.</p><ol><li>Nuevo problema: Ana tiene S/ 50 y usa 2/5; Luis tiene S/ 50 y usa 4/10. ¿Quién usa más? Luego cambia uno de los totales y explica qué sucede.</li><li>Comprueben: ¿2/4 y 3/6 son equivalentes?</li><li>Refuten con un dibujo: «Si sumo 1 a ambos términos, siempre obtengo una fracción equivalente».</li></ol><a class="text-link" href="#ficha-trabajo" data-open-resource="ficha-trabajo-dialog" aria-haspopup="dialog">Abrir ficha de trabajo ↓</a></div></details></article>
+      </div>
+    </section>
+    <section class="phase phase-end" id="cierre" aria-labelledby="titulo-cierre">
+      <header class="phase-header"><div><span class="phase-number">03</span><h2 id="titulo-cierre">Cierre</h2></div><span>◷ 20 min</span></header>
+      <div class="phase-content">
+        <article class="activity"><div class="activity-heading"><span>3.1</span><h3>Ordenamos nuestras ideas</h3><small>10 min</small></div><ol class="takeaways"><li>Una fracción representa partes iguales de una unidad.</li><li>Dos fracciones equivalentes expresan la misma cantidad.</li><li>Las figuras y los procedimientos numéricos nos ayudan a justificarlo.</li></ol><details class="learning-resource"><summary>▤ Organizador para completar</summary><div class="resource-body"><p>Copia este esquema y añade un ejemplo en cada línea:</p><ul><li><strong>Fracción:</strong> partes de una unidad → ejemplo: ____.</li><li><strong>Numerador:</strong> partes tomadas → ____.</li><li><strong>Denominador:</strong> partes iguales totales → ____.</li><li><strong>Equivalencia:</strong> misma cantidad → ____ = ____.</li></ul></div></details></article>
+        <article class="activity"><div class="activity-heading"><span>3.2</span><h3>Revisión de la evidencia</h3><small>5 min</small></div><p>Revisa la ficha ya elaborada durante el desarrollo con la lista de cotejo:</p><ul class="checklist"><li>Verifica las representaciones y los términos.</li><li>Comprueba las equivalencias y su justificación.</li><li>Corrige un error con la orientación del docente.</li><li>Entrega la ficha como evidencia individual.</li></ul><a class="resource-link" href="#ficha-trabajo" data-open-resource="ficha-trabajo-dialog" aria-haspopup="dialog">✎ Abrir ficha de trabajo imprimible ↓</a><a class="text-link" href="#lista-cotejo">Revisar criterios de evaluación ↑</a><a class="resource-link" href="lista-cotejo.html" target="_blank" rel="noopener noreferrer">Lista de cotejo: cargar estudiantes y guardar ↗</a></article>
+        <article class="activity reflection"><div class="activity-heading"><span>3.3</span><h3>Reflexionamos</h3><small>5 min</small></div><p>Elige una pregunta y respóndela individualmente en el ticket de salida:</p><ol><li>¿Cómo te ayudaron las figuras a comprender la equivalencia?</li><li>¿Qué descubriste que no veías solo con los números?</li><li>¿Cómo resolverías un problema similar sin computadora?</li></ol><p class="reflection-note">Aprender también es pensar en cómo aprendemos.</p><details class="learning-resource"><summary>✓ Ticket de salida</summary><div class="resource-body"><p>Escribe tu respuesta a la pregunta elegida y una duda que todavía necesitas resolver.</p><p>Compara tu conclusión con la hipótesis del reto inicial.</p></div></details></article>
+      </div>
+    </section>
+  </div>
+  <!-- 04 · LABORATORIO: los IDs de los controles se conectan con app.js. -->
+  <!-- Recurso oculto: se abre desde las actividades. -->
+<dialog class="resource-dialog" id="laboratorio-dialog" aria-labelledby="lab-title">
+<div class="resource-dialog-actions"><button type="button" data-close-resource aria-label="Cerrar ventana">Cerrar ×</button></div>
+<section class="lab" id="laboratorio" aria-labelledby="lab-title">
+    <div class="lab-intro"><p class="eyebrow">PRUEBA · COMPARA · DESCUBRE</p><h2 id="lab-title">Tu laboratorio de fracciones</h2><p>Cambia los valores. ¿Puedes crear dos fracciones diferentes que ocupen el mismo espacio?</p><button id="reiniciar" class="reset-button" type="button">↺ Reiniciar ejemplo</button></div>
+    <div class="lab-workspace">
+      <div class="fraction-editors">
+        <fieldset><legend>Fracción A</legend><div class="controls"><label>Numerador<select id="num-a"></select></label><label>Denominador<select id="den-a"></select></label></div><div class="interactive-bar" id="bar-a" role="img"></div><output id="value-a"></output></fieldset>
+        <span class="compare-symbol" id="compare-symbol" aria-hidden="true">=</span>
+        <fieldset><legend>Fracción B</legend><div class="controls"><label>Numerador<select id="num-b"></select></label><label>Denominador<select id="den-b"></select></label></div><div class="interactive-bar" id="bar-b" role="img"></div><output id="value-b"></output></fieldset>
+      </div>
+      <p id="resultado" class="result" role="status" aria-live="polite"></p>
+      <noscript>Activa JavaScript para utilizar el simulador. Ejemplo: 1/2 y 2/4 representan la misma cantidad.</noscript>
+    </div>
+  </section>
+</dialog>
+<!-- 06 · MATERIAL IMPRIMIBLE: editar aquí ejercicios y espacios de respuesta. -->
+<!-- Recurso oculto: se abre desde las actividades. -->
+<dialog class="resource-dialog" id="ficha-trabajo-dialog" aria-labelledby="ficha-titulo">
+<div class="resource-dialog-actions"><button type="button" data-print-session>Imprimir / Guardar PDF</button><button type="button" data-close-resource aria-label="Cerrar ventana">Cerrar ×</button></div>
+<section class="worksheet" id="ficha-trabajo" aria-labelledby="ficha-titulo">
+  <p class="eyebrow">MATERIAL DE TRABAJO · 1.° DE SECUNDARIA</p>
+  <h2 id="ficha-titulo">Ficha: distintas fracciones, la misma cantidad</h2>
+  <p>Resuelve en tu cuaderno o imprime la sesión con el botón superior. Completa los ejercicios durante el desarrollo y revísalos en el cierre.</p>
+  <p class="student-line">Nombre: ____________________________ Fecha: ______________</p>
+  <ol class="worksheet-exercises">
+    <li><strong>Representa.</strong> Representa con barras los ahorros: 1/2 de S/ 40 y 2/4 de S/ 80. Indica el total, numerador y denominador.<div class="answer-space" aria-label="Espacio para dibujar"></div></li>
+    <li><strong>Construye equivalencias.</strong> Colorea la misma cantidad en la segunda figura y completa.
+<!-- Pares de barras del mismo tamaño; la segunda queda vacía para el estudiante. -->
+<div class="equivalence-exercises"><div class="equivalence-exercise"><div class="visual-pair"><div><svg viewBox="0 0 122 26" role="img" aria-label="1 de 3 partes coloreadas"><rect x="1" y="1" width="40" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="41" y="1" width="40" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="81" y="1" width="40" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>1</b><b>3</b></span></div><span class="visual-equals" aria-hidden="true">=</span><div><svg viewBox="0 0 122 26" role="img" aria-label="6 partes sin colorear"><rect x="1" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="21" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="41" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="61" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="81" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="101" y="1" width="20" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>___</b><b>6</b></span></div></div><p>Multipliqué ambos términos por: ____</p></div><div class="equivalence-exercise"><div class="visual-pair"><div><svg viewBox="0 0 122 26" role="img" aria-label="2 de 5 partes coloreadas"><rect x="1" y="1" width="24" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="25" y="1" width="24" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="49" y="1" width="24" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="73" y="1" width="24" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="97" y="1" width="24" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>2</b><b>5</b></span></div><span class="visual-equals" aria-hidden="true">=</span><div><svg viewBox="0 0 122 26" role="img" aria-label="10 partes sin colorear"><rect x="1" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="13" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="25" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="37" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="49" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="61" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="73" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="85" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="97" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="109" y="1" width="12" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>___</b><b>10</b></span></div></div><p>Multipliqué ambos términos por: ____</p></div><div class="equivalence-exercise"><div class="visual-pair"><div><svg viewBox="0 0 122 26" role="img" aria-label="3 de 4 partes coloreadas"><rect x="1" y="1" width="30" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="31" y="1" width="30" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="61" y="1" width="30" height="24" fill="#8293a5" stroke="#24384b" stroke-width="1"/><rect x="91" y="1" width="30" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>3</b><b>4</b></span></div><span class="visual-equals" aria-hidden="true">=</span><div><svg viewBox="0 0 122 26" role="img" aria-label="8 partes sin colorear"><rect x="1" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="16" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="31" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="46" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="61" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="76" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="91" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/><rect x="106" y="1" width="15" height="24" fill="#fff" stroke="#24384b" stroke-width="1"/></svg><span class="fraction"><b>___</b><b>8</b></span></div></div><p>Multipliqué ambos términos por: ____</p></div></div></li>
+    <li><strong>Experimenta.</strong> Registra dos parejas equivalentes del simulador y una pareja que no sea equivalente. Explica lo que observaste.<div class="answer-space"></div></li>
+    <li><strong>Resuelve.</strong> En el problema de los ahorros, ¿quién usa más dinero? Justifica con una representación, un cálculo y una explicación sobre el total.<div class="answer-space"></div></li>
+    <li><strong>Concluye.</strong> Explica la diferencia entre fracciones equivalentes y cantidades iguales en una situación cotidiana.<div class="answer-line"></div></li>
+  </ol>
+  <a class="text-link" href="#lista-cotejo">Revisar mi trabajo con la lista de cotejo ↑</a>
+</section>
+</dialog>
+</main>
+<!-- 05 · PIE DE PÁGINA -->
+<footer class="wrap footer"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">½</span> Aula de matemática</a><p>Explorar para comprender. Comprender para aprender.</p><a href="#contenido">Volver arriba ↑</a></footer>
+
+<!-- 07. DOCUMENTO A4 · visible solo al imprimir. Edita los datos sin inventar información institucional. -->
+<section class="print-document" aria-label="Sesión de aprendizaje para impresión">
+  <section class="print-page">
+    <header class="document-header"><p>EDUCACIÓN BÁSICA REGULAR · SECUNDARIA</p><h1>SESIÓN DE APRENDIZAJE N.° 14 · UNIDAD V</h1><h2>Comprendemos y representamos fracciones en situaciones cotidianas</h2></header>
+    <h3>I. DATOS INFORMATIVOS</h3>
+    <table class="document-table"><tbody>
+      <tr><th>I.E.</th><td data-session-field="institucion">____________________________</td><th>Unidad</th><td data-session-field="unidad">V</td></tr>
+      <tr><th>Área</th><td>Matemática</td><th>Grado / sección</th><td>Primero <span data-session-field="seccion">A</span></td></tr>
+      <tr><th>Fecha</th><td data-session-field="fecha">02 / 11 / 2026</td><th>Duración</th><td>90 minutos</td></tr>
+      <tr><th>Docente</th><td data-session-field="docente">____________________________</td><th>Equipo</th><td data-session-field="equipo">2</td></tr>
+    </tbody></table>
+    <h3>II. PROPÓSITO DE APRENDIZAJE</h3>
+    <p class="document-purpose">Identificar y comparar situaciones de la vida cotidiana que involucren fracciones, comprendiendo su significado, la equivalencia entre fracciones y la relación con el total de referencia.</p>
+    <div id="print-curriculum"></div>
+    <h3>III. PREPARACIÓN Y MATERIALES</h3>
+    <table class="document-table"><thead><tr><th>Antes de la sesión</th><th>Materiales y recursos</th></tr></thead><tbody><tr><td>Preparar las tiras o barras de fracciones, imprimir la ficha y comprobar el acceso al cuestionario y al simulador.</td><td>Tiras de fracciones, fichas, papel cuadriculado, colores, cuaderno, computadora o celular, proyector e internet. Alternativa sin conexión: barras de papel y preguntas en el cuaderno.</td></tr></tbody></table>
+    <footer>MATEMÁTICA · 1.° DE SECUNDARIA <span>1</span></footer>
+  </section>
+  <section class="print-page">
+    <header class="document-header"><h2>SECUENCIA DIDÁCTICA</h2><p>Comprendemos y representamos fracciones en situaciones cotidianas</p></header>
+    <h3>IV. DESARROLLO DE LA SESIÓN</h3>
+    <table class="document-table sequence-table">
+      <thead><tr><th>Momento</th><th>Actividades y estrategias metodológicas</th><th>Recursos</th><th>Tiempo</th></tr></thead>
+      <tbody>
+        <tr><th>INICIO</th><td>
+          <p><strong>1.1. Situación significativa (10 min).</strong> Analizan los ahorros de María y José: 1/2 de S/ 40 y 2/4 de S/ 80. Identifican datos, total y pregunta; proponen una respuesta sin confirmar aún el resultado.</p>
+          <p><strong>1.2. Saberes previos (5 min).</strong> Responden el cuestionario de Wordwall sobre partes iguales, numerador y denominador. El docente identifica dificultades sin calificar. Las tres preguntas del cuaderno son una alternativa al juego.</p>
+          <p><strong>1.3. Reto (5 min).</strong> ¿Pueden fracciones diferentes representar la misma cantidad? Registran una hipótesis. El docente comunica el propósito y los criterios: representar, identificar términos, construir equivalencias y justificar.</p>
+        </td><td>Tiras de fracciones, papel cuadriculado, colores, cuestionario y cuaderno.</td><td>20 min</td></tr>
+        <tr><th>DESARROLLO</th><td>
+          <p><strong>2.1. Comprensión del problema (15 min).</strong> Identifican los datos, la pregunta y la unidad de referencia en el problema de los ahorros. Explican el problema con sus palabras y eligen cómo representarlo. Completan el ejercicio 1. El video es apoyo breve si se necesita.</p>
+          <p><strong>2.2. Búsqueda y ejecución de estrategias (10 min).</strong> Eligen superponer, doblar o subdividir figuras. Construyen 2/3 = 4/6 con tiras, resuelven una fracción de una cantidad y completan el ejercicio 2. Explican el factor común y la simplificación. El video es apoyo breve, no una actividad adicional.</p>
+          <p><strong>2.3. Comprobación y socialización (15 min).</strong> Usan un simulador durante 10 minutos y completan el ejercicio 3. En los otros 5 minutos comparan estrategias y explican cómo cambia la cantidad cuando cambia el total.</p>
+          <p><strong>2.4. Reflexión y formalización (10 min).</strong> Acuerdan qué significa equivalencia y distinguen entre fracción equivalente y cantidad resultante. Completan los ejercicios 4 y 5 y justifican el reto. El docente observa con la lista de cotejo y retroalimenta. El problema de las cintas es transferencia opcional para quienes terminan.</p>
+        </td><td>Videos, proyector, laboratorio de fracciones o PhET, ficha de trabajo.</td><td>50 min</td></tr>
+        <tr><th>CIERRE</th><td>
+          <p><strong>3.1. Sistematización (10 min).</strong> Completan un organizador sobre fracción, numerador, denominador y equivalencia con ejemplos.</p>
+          <p><strong>3.2. Evidencia (5 min).</strong> Revisan la ficha ya completada, corrigen un error con retroalimentación y justifican el problema de los ahorros antes de entregarla.</p>
+          <p><strong>3.3. Metacognición (5 min).</strong> Eligen una pregunta de reflexión y responden en el ticket junto con una duda. Contrastan su conclusión con la hipótesis inicial.</p>
+        </td><td>Organizador, ficha, lista de cotejo y ticket de salida.</td><td>20 min</td></tr>
+      </tbody>
+    </table>
+    <h3>V. EVALUACIÓN · LISTA DE COTEJO</h3>
+    <table class="document-table evaluation-table"><thead><tr><th>Criterios observables</th><th>Sí</th><th>No</th><th>Observaciones</th></tr></thead><tbody>
+      <tr><td>Representa las porciones con unidades iguales y partes del mismo tamaño.</td><td>□</td><td>□</td><td></td></tr>
+      <tr><td>Identifica y explica el numerador y el denominador.</td><td>□</td><td>□</td><td></td></tr>
+      <tr><td>Construye equivalencias aplicando el mismo factor no nulo a ambos términos.</td><td>□</td><td>□</td><td></td></tr>
+      <tr><td>Justifica la equivalencia mediante gráficos y procedimientos numéricos.</td><td>□</td><td>□</td><td></td></tr>
+    </tbody></table>
+    <footer>MATEMÁTICA · 1.° DE SECUNDARIA <span>2</span></footer>
+  </section>
+  <!-- Lista guardada: se reconstruye antes de imprimir y precede al anexo. -->
+  <div id="print-saved-roster"></div>
+  <section class="print-page">
+    <header class="document-header"><h2>ANEXO · FICHA DE TRABAJO</h2><p>Comprendemos y representamos fracciones en situaciones cotidianas</p></header>
+    <div id="print-worksheet"></div>
+    <footer>MATEMÁTICA · 1.° DE SECUNDARIA <span>Anexo</span></footer>
+  </section>
+</section>
+
+<!-- 08. CONFIGURACIÓN · diálogo accesible; los datos se guardan solo en este navegador. -->
+<dialog id="datos-dialog" class="settings-dialog" aria-labelledby="datos-title" aria-describedby="datos-help">
+  <form id="datos-form">
+    <div class="settings-icon" aria-hidden="true">⚙</div>
+    <h2 id="datos-title">Datos de la sesión</h2>
+    <p id="datos-help">Estos datos aparecerán en la sesión, la lista de cotejo y el PDF.</p>
+    <label for="dato-institucion">Institución educativa</label>
+    <input id="dato-institucion" name="institucion" maxlength="120" placeholder="Nombre de la institución" autofocus>
+    <label for="dato-docente">Docente</label>
+    <input id="dato-docente" name="docente" maxlength="100" placeholder="Nombres y apellidos">
+    <div class="settings-row">
+      <div><label for="dato-unidad">Unidad</label><input id="dato-unidad" name="unidad" maxlength="20" value="V"></div>
+      <div><label for="dato-seccion">Sección</label><input id="dato-seccion" name="seccion" maxlength="30" value="A"></div>
+    </div>
+    <div class="settings-row">
+      <div><label for="dato-fecha">Fecha de la sesión</label><input id="dato-fecha" name="fecha" type="date" value="2026-11-02" min="1900-01-01" max="2100-12-31"></div>
+      <div><label for="dato-equipo">Equipo</label><input id="dato-equipo" name="equipo" maxlength="20" value="2"></div>
+    </div>
+<fieldset class="resource-settings">
+      <legend>Recursos del reto lógico</legend>
+      <p>Agrega enlaces públicos o un archivo para consultar durante esta sesión.</p>
+      <label for="dato-presentacion">Enlace de presentación</label>
+      <input id="dato-presentacion" name="presentacion" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-recurso">Enlace de actividad o video</label>
+      <input id="dato-recurso" name="recurso" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-archivo">Enlace de archivo (PDF, Drive u otro)</label>
+      <input id="dato-archivo" name="archivo" type="url" maxlength="500" placeholder="https://…">
+      <label for="dato-archivo-local">Archivo temporal</label>
+      <input id="dato-archivo-local" name="archivo-local" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt">
+      <small>El archivo local se abre solo en este navegador y no se publica en GitHub Pages.</small>
+    </fieldset>
+    <p class="settings-note">Área: Matemática · grado: Primero · duración: 90 minutos. Se guardan solo en este navegador.</p>
+    <div class="settings-actions"><button id="cancelar-datos" type="button">Cancelar</button><button type="submit" class="settings-save">Guardar datos</button></div>
+  </form>
+</dialog>
+<p id="datos-status" class="settings-toast" role="status" aria-live="polite"></p>
+<!-- 09. RETO LÓGICO · contenido y recursos configurables del Equipo 2. -->
+<dialog id="reto-logico-dialog" class="resource-dialog logic-dialog" aria-labelledby="reto-title">
+  <div class="resource-dialog-actions"><button type="button" data-close-resource aria-label="Cerrar reto lógico">Cerrar ×</button></div>
+  <header class="logic-header">
+    <p class="eyebrow">EQUIPO 2 · RAZONAR, ARGUMENTAR Y DEMOSTRAR</p>
+    <h2 id="reto-title">Reto lógico: ¿los ejemplos bastan?</h2>
+    <p>Explora cómo una afirmación matemática necesita una justificación general, no solo algunos casos.</p>
+  </header>
+  <section class="logic-grid" aria-label="Propósitos del reto">
+    <article><h3>Razonar</h3><p>Reconoce patrones y formula conjeturas a partir de ejemplos.</p></article>
+    <article><h3>Argumentar</h3><p>Explica por qué una conclusión es válida con lenguaje matemático claro.</p></article>
+    <article><h3>Demostrar</h3><p>Usa una representación general para validar una afirmación.</p></article>
+  </section>
+  <section class="logic-challenge">
+    <h3>Desafío</h3>
+    <p>La suma de dos números impares siempre es par. Observa: 3 + 5 = 8 y 7 + 9 = 16. ¿Estos ejemplos son suficientes para demostrar que ocurre siempre?</p>
+    <div class="logic-options">
+      <label><input type="radio" name="reto-respuesta" value="si"> Sí, dos ejemplos demuestran la afirmación.</label>
+      <label><input type="radio" name="reto-respuesta" value="no"> No, se necesita una justificación general.</label>
+    </div>
+    <label for="reto-explicacion">Explica tu idea</label>
+    <textarea id="reto-explicacion" rows="3" maxlength="500" placeholder="Escribe cómo comprobarías la afirmación…"></textarea>
+    <div class="logic-actions"><button type="button" id="validar-reto">Revisar respuesta</button><button type="button" id="mostrar-pista">Ver pista</button></div>
+    <p id="reto-feedback" class="logic-feedback" role="status" aria-live="polite"></p>
+    <details><summary>Ver demostración</summary><p>Todo impar puede escribirse como 2a + 1. Entonces: (2a + 1) + (2b + 1) = 2(a + b + 1), que es múltiplo de 2; por eso la suma siempre es par.</p></details>
+  </section>
+  <section class="logic-connections">
+    <h3>Conexiones para la formación docente</h3>
+    <p>Relaciona el razonamiento lógico con historia y filosofía de las matemáticas, lenguaje matemático, ciudadanía digital, tecnología y enseñanza.</p>
+    <div id="logic-resources" hidden><h3>Recursos agregados</h3><ul id="logic-resource-links"></ul></div>
+  </section>
+</dialog>
+</body>
+</html>
