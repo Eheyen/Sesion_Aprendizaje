@@ -44,7 +44,10 @@ goToSession(0);
 const completed = new Set();
 function feedback(id, text, ok) {
   const node = document.querySelector(id);
-  node.textContent = text; node.classList.toggle("is-success", ok); node.classList.toggle("is-error", !ok);
+  if (!node) return;
+  node.textContent = text;
+  node.classList.toggle("is-success", ok);
+  node.classList.toggle("is-error", !ok);
 }
 function updateStages() {
   document.querySelector("#score").textContent = completed.size + " / 4";
@@ -78,16 +81,42 @@ document.querySelector("#check-pattern").addEventListener("click", () => {
   else if (value === "42") feedback("#pattern-feedback", "El resultado es correcto; ahora explica la regla que usaste.", false);
   else feedback("#pattern-feedback", "Revisa cómo cambia cada producto de números consecutivos.", false);
 });
-document.querySelector("#check-odd").addEventListener("click", () => {
-  const choice = document.querySelector('input[name="odd-answer"]:checked')?.value, explanation = document.querySelector("#odd-proof").value.trim();
-  if (choice === "verdadero" && explanation.length >= 25) { completeStage(3); feedback("#odd-feedback", "Respuesta registrada. El Reto 4 ya está disponible.", true); }
-  else feedback("#odd-feedback", "Elige una respuesta y justifícala con ejemplos o una expresión general.", false);
-});
-document.querySelector("#check-counterexample").addEventListener("click", () => {
-  const choice = document.querySelector('input[name="error-answer"]:checked')?.value, explanation = document.querySelector("#counterexample").value.trim();
-  if (choice === "no" && explanation.length >= 25) { completeStage(4); feedback("#counterexample-feedback", "Análisis registrado.", true); }
-  else feedback("#counterexample-feedback", "Indica si el razonamiento es válido y explica por qué los ejemplos no bastan.", false);
-});
+/* RETO 3 · El detective matemático: jerarquía de operaciones. */
+const checkOperation = document.querySelector("#check-operation");
+if (checkOperation) {
+  checkOperation.addEventListener("click", () => {
+    const answer = document.querySelector('input[name="operation-answer"]:checked')?.value;
+    const reason = document.querySelector('input[name="operation-reason"]:checked')?.value;
+    if (!answer || !reason) {
+      feedback("#operation-feedback", "Selecciona un resultado y una explicación.", false);
+      return;
+    }
+    if (answer === "16" && reason === "multiplicacion") {
+      completeStage(3);
+      feedback("#operation-feedback", "¡Correcto! Luis tiene razón: primero 4 × 2 = 8 y después 8 + 8 = 16. El Reto 4 está disponible.", true);
+    } else {
+      feedback("#operation-feedback", "Todavía no. Recuerda que la multiplicación se resuelve antes que la suma.", false);
+    }
+  });
+}
+
+/* RETO 4 · Construye una demostración algebraica. */
+const checkConsecutive = document.querySelector("#check-consecutive");
+if (checkConsecutive) {
+  checkConsecutive.addEventListener("click", () => {
+    const answer = document.querySelector('input[name="consecutive-proof"]:checked')?.value;
+    if (!answer) {
+      feedback("#consecutive-feedback", "Selecciona una expresión para continuar.", false);
+      return;
+    }
+    if (answer === "correcto") {
+      completeStage(4);
+      feedback("#consecutive-feedback", "¡Excelente! n + (n + 1) + (n + 2) = 3(n + 1), por eso la suma siempre es divisible entre 3.", true);
+    } else {
+      feedback("#consecutive-feedback", "Revisa la suma de los tres términos: n, n + 1 y n + 2.", false);
+    }
+  });
+}
 document.querySelector("#reset-challenges").addEventListener("click", () => {
   completed.clear(); document.querySelectorAll(".challenge-section input, .challenge-section textarea").forEach(field => { if (field.type !== "radio") field.value = ""; else field.checked = false; });
   document.querySelectorAll(".feedback, .hint-feedback").forEach(node => { node.textContent = ""; node.classList.remove("is-success","is-error"); });
