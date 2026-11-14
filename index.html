@@ -7,22 +7,100 @@
   <title>¡Mente Matemática! | Equipo 2</title>
   <link rel="stylesheet" href="station.css?v=images-layout-1">
   <style>
-    /* Presentación del Reto 2 según el diseño de referencia */
-    .pattern-challenge { background:#050505; color:#f4f4f4; border:1px solid #292929; border-radius:14px; padding:18px; }
-    .pattern-challenge .challenge-number { color:#d8d8d8; letter-spacing:.02em; }
-    .pattern-challenge .pattern-sequence { text-align:center; font-size:clamp(1.35rem,3vw,1.9rem); letter-spacing:.04em; margin:18px 0 12px; color:#f7f7f7; }
-    .pattern-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
-    .pattern-options label { display:block; cursor:pointer; margin:0; }
-    .pattern-options input { position:absolute; opacity:0; pointer-events:none; }
-    .pattern-options span { display:flex; min-height:48px; align-items:center; justify-content:center; border:1px solid #292929; border-radius:9px; color:#ededed; font-weight:700; background:#050505; transition:background .18s,border-color .18s; }
-    .pattern-options input:checked + span { background:#183b61; border-color:#3988d4; color:#fff; }
-    .pattern-options label:hover span { border-color:#777; }
-    .pattern-check { margin-top:12px; }
-    .pattern-instruction { color:#bdbdbd; font-size:.82rem; margin:10px 0 0; }
-    .pattern-challenge .feedback { color:#f4f4f4; }
-    @media(max-width:520px) { .pattern-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    /* RETO 2 · mantiene la identidad visual de Mente Matemática */
+    .pattern-challenge {
+      background: #ffffff;
+      color: var(--ink, #183153);
+      border: 1px solid var(--line, #d7e1ec);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 8px 20px #1635550c;
+    }
+    .pattern-challenge .challenge-number {
+      display: inline-flex;
+      width: auto;
+      min-height: 34px;
+      padding: 0 13px;
+      border-radius: 8px;
+      background: #e8e0ff;
+      color: #56378e;
+      letter-spacing: .03em;
+    }
+    .pattern-challenge .pattern-sequence {
+      text-align: center;
+      color: var(--ink, #183153);
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 900;
+      letter-spacing: .04em;
+      margin: 18px 0;
+    }
+    .pattern-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin: 14px 0;
+    }
+    .pattern-options label {
+      display: block;
+      cursor: pointer;
+      margin: 0;
+    }
+    .pattern-options input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .pattern-options span {
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbd8e6;
+      border-radius: 9px;
+      color: #183153;
+      font-weight: 800;
+      background: #f4f8fc;
+      transition: background .18s, border-color .18s, transform .18s;
+    }
+    .pattern-options input:checked + span {
+      background: #e7dbff;
+      border-color: #9675c4;
+      color: #56378e;
+      box-shadow: inset 0 0 0 1px #9675c4;
+    }
+    .pattern-options label:hover span {
+      border-color: #2867a5;
+      background: #eaf3fb;
+    }
+    .pattern-options input:focus-visible + span {
+      outline: 3px solid #8fc7ee;
+      outline-offset: 2px;
+    }
+    .pattern-check {
+      margin-top: 8px;
+      padding: 10px 17px;
+      border: 1px solid #1d5d98;
+      border-radius: 8px;
+      background: #2169a8;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .pattern-check:hover { background: #184f82; }
+    .pattern-instruction {
+      color: #52677e;
+      font-size: .88rem;
+      margin: 10px 0 0;
+    }
+    .pattern-challenge .feedback { color: #17654b; }
+    .pattern-challenge .feedback.is-error { color: #a33b3b; }
+    @media (max-width: 520px) {
+      .pattern-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pattern-challenge { padding: 16px; }
+    }
   </style>
-  <script src="station.js?v=reto2-opciones-3" defer></script>
+  <script src="station.js?v=reto2-paleta-4" defer></script>
 </head>
 <body>
 <a class="skip" href="#inicio">Saltar al contenido</a>
@@ -65,7 +143,7 @@
     <label><input type="radio" name="pattern-answer" value="44"><span>44</span></label>
   </div>
   <button id="check-pattern" class="pattern-check" type="button">Comprobar respuesta</button>
-  <p class="pattern-instruction">Seleccionar una respuesta y comprobar.</p>
+  <p class="pattern-instruction">Selecciona una alternativa y comprueba tu respuesta.</p>
   <p id="pattern-feedback" class="feedback" aria-live="polite"></p>
 </article>
 
