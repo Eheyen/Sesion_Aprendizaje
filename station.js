@@ -75,12 +75,23 @@ const hints = ["Sustituye A y B en la ecuación de la suma para trabajar con una
 document.querySelectorAll(".hint-button").forEach(button => button.addEventListener("click", () => {
   const index = Number(button.dataset.hint) - 1; feedback("#hint-feedback", hints[index], true); button.disabled = true;
 }));
-document.querySelector("#check-pattern").addEventListener("click", () => {
-  const value = document.querySelector("#pattern-answer").value.trim(), reason = document.querySelector("#pattern-reason").value.trim();
-  if (value === "42" && reason.length >= 15) { completeStage(2); feedback("#pattern-feedback", "Patrón validado. El Reto 3 ya está disponible.", true); }
-  else if (value === "42") feedback("#pattern-feedback", "El resultado es correcto; ahora explica la regla que usaste.", false);
-  else feedback("#pattern-feedback", "Revisa cómo cambia cada producto de números consecutivos.", false);
-});
+/* RETO 2 · selección múltiple: patrón de productos consecutivos. */
+const checkPattern = document.querySelector("#check-pattern");
+if (checkPattern) {
+  checkPattern.addEventListener("click", () => {
+    const answer = document.querySelector('input[name="pattern-answer"]:checked')?.value;
+    if (!answer) {
+      feedback("#pattern-feedback", "Selecciona una alternativa antes de comprobar.", false);
+      return;
+    }
+    if (answer === "42") {
+      completeStage(2);
+      feedback("#pattern-feedback", "¡Correcto! La regla es n × (n + 1): 6 × 7 = 42. El Reto 3 ya está disponible.", true);
+    } else {
+      feedback("#pattern-feedback", "No es la alternativa correcta. Observa los productos: 1 × 2, 2 × 3, 3 × 4, 4 × 5 y 5 × 6.", false);
+    }
+  });
+}
 /* RETO 3 · El detective matemático: jerarquía de operaciones. */
 const checkOperation = document.querySelector("#check-operation");
 if (checkOperation) {
