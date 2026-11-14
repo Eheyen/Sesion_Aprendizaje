@@ -40,8 +40,88 @@
 <div class="stage-progress" aria-label="Progreso de cuatro retos"><span class="stage-status available" data-stage-status="1">1 · Disponible</span><span class="stage-status" data-stage-status="2">2 · Bloqueado</span><span class="stage-status" data-stage-status="3">3 · Bloqueado</span><span class="stage-status" data-stage-status="4">4 · Bloqueado</span></div>
 <article class="public-stage safe-challenge" data-stage="1"><div class="safe-visual" aria-hidden="true"><div class="safe-dial">?</div><span class="safe-handle"></span><span class="safe-led"></span><p>CAJA SEGURA</p></div><div class="safe-content"><span class="challenge-number">RETO 1 · DISPONIBLE</span><h3>Descifra el código</h3><div class="clue-grid"><article><b>PISTA 1</b><p>La primera cifra es el doble de la tercera.</p></article><article><b>PISTA 2</b><p>La segunda cifra es una unidad mayor que la tercera.</p></article><article><b>PISTA 3</b><p>La suma de las tres cifras es 17.</p></article></div><div class="relations"><span>A = 2C</span><span>B = C + 1</span><span>A + B + C = 17</span></div><label for="secret-code">Ingresa el código de tres cifras</label><div class="code-row"><input id="secret-code" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" placeholder="___"><button id="check-code" type="button">Probar código</button></div><p id="code-feedback" class="feedback" aria-live="polite"></p><div class="hint-row"><button class="hint-button" data-hint="1" type="button">Pista progresiva 1</button><button class="hint-button" data-hint="2" type="button">Pista progresiva 2</button><button class="hint-button" data-hint="3" type="button">Pista progresiva 3</button></div><p id="hint-feedback" class="hint-feedback" aria-live="polite"></p></div></article>
 <article class="public-stage challenge-card locked" data-stage="2" hidden><span class="challenge-number">RETO 2 · BLOQUEADO</span><h3>Descubre el patrón</h3><p>2, 6, 12, 20, 30, ?</p><label for="pattern-answer">¿Cuál es el siguiente término?</label><div class="answer-row"><input id="pattern-answer" inputmode="numeric" placeholder="Número"><button id="check-pattern" type="button">Comprobar</button></div><label for="pattern-reason">¿Qué regla utilizaste?</label><textarea id="pattern-reason" rows="2" maxlength="350" placeholder="Explica tu regla…"></textarea><p id="pattern-feedback" class="feedback" aria-live="polite"></p></article>
-<article class="public-stage challenge-card locked" data-stage="3" hidden><span class="challenge-number">RETO 3 · BLOQUEADO</span><h3>¿Siempre es verdadero?</h3><p>“La suma de dos números impares siempre es par”.</p><div class="choice-row"><label><input type="radio" name="odd-answer" value="verdadero"> Verdadero</label><label><input type="radio" name="odd-answer" value="falso"> Falso</label></div><label for="odd-proof">Justifica tu elección</label><textarea id="odd-proof" rows="3" maxlength="500" placeholder="Usa ejemplos o una expresión general…"></textarea><button id="check-odd" type="button">Revisar respuesta</button><p id="odd-feedback" class="feedback" aria-live="polite"></p></article>
-<article class="public-stage challenge-card locked" data-stage="4" hidden><span class="challenge-number">RETO 4 · BLOQUEADO</span><h3>Encuentra el error</h3><p>“Si una propiedad se cumple en cinco ejemplos, entonces es verdadera para todos los números”.</p><div class="choice-row"><label><input type="radio" name="error-answer" value="no"> No es correcto</label><label><input type="radio" name="error-answer" value="si"> Sí es correcto</label></div><label for="counterexample">Explica el error o propone un contraejemplo</label><textarea id="counterexample" rows="3" maxlength="500" placeholder="Escribe tu argumento…"></textarea><button id="check-counterexample" type="button">Finalizar reto</button><p id="counterexample-feedback" class="feedback" aria-live="polite"></p></article>
+
+<article class="public-stage challenge-card locked" data-stage="3" hidden>
+  <span class="challenge-number">RETO 3 · BLOQUEADO</span>
+  <h3>🕵️ ¡El desafío del detective matemático!</h3>
+
+  <p>Descubre quién resolvió correctamente esta operación:</p>
+
+  <div class="math-operation">
+    <strong>8 + 4 × 2 = ?</strong>
+  </div>
+
+  <div class="detective-options">
+    <label>
+      <input type="radio" name="operation-answer" value="24">
+      Ana: 24
+    </label>
+    <label>
+      <input type="radio" name="operation-answer" value="16">
+      Luis: 16
+    </label>
+    <label>
+      <input type="radio" name="operation-answer" value="20">
+      Pedro: 20
+    </label>
+  </div>
+
+  <p><strong>¿Qué propiedad permite resolverla correctamente?</strong></p>
+
+  <div class="choice-row">
+    <label>
+      <input type="radio" name="operation-reason" value="multiplicacion">
+      Primero se multiplica y luego se suma.
+    </label>
+    <label>
+      <input type="radio" name="operation-reason" value="izquierda">
+      Siempre se resuelve de izquierda a derecha.
+    </label>
+  </div>
+
+  <button id="check-operation" type="button">Comprobar respuesta</button>
+
+  <p id="operation-feedback" class="feedback" aria-live="polite"></p>
+</article>
+
+
+<article class="public-stage challenge-card locked" data-stage="4" hidden>
+  <span class="challenge-number">RETO 4 · BLOQUEADO</span>
+  <h3>🧩 ¡Construye la demostración!</h3>
+
+  <p>
+    La suma de tres números consecutivos siempre es divisible entre 3.
+  </p>
+
+  <div class="math-operation">
+    <strong>5 + 6 + 7 = 18</strong>
+    <p>¿Este ejemplo demuestra que siempre se cumple?</p>
+  </div>
+
+  <p><strong>Selecciona la expresión que permite demostrarlo para cualquier número:</strong></p>
+
+  <div class="proof-options">
+    <label>
+      <input type="radio" name="consecutive-proof" value="correcto">
+      n + (n + 1) + (n + 2) = 3(n + 1)
+    </label>
+
+    <label>
+      <input type="radio" name="consecutive-proof" value="incorrecto1">
+      n + (n + 1) + (n + 2) = 3n
+    </label>
+
+    <label>
+      <input type="radio" name="consecutive-proof" value="incorrecto2">
+      n + (n + 1) + (n + 2) = n + 3
+    </label>
+  </div>
+
+  <button id="check-consecutive" type="button">Verificar demostración</button>
+
+  <p id="consecutive-feedback" class="feedback" aria-live="polite"></p>
+</article>
+
 <p id="challenge-complete" class="challenge-complete" hidden aria-live="polite">¡FELICITACIONES! HAS COMPLETADO LOS CUATRO RETOS MATEMÁTICOS.</p><button class="reset-button" id="reset-challenges" type="button">Reiniciar retos</button></div></section>
 <dialog id="teacher-access-dialog" class="teacher-dialog" aria-labelledby="teacher-access-title"><button class="close-dialog" id="close-teacher-access" type="button" aria-label="Cerrar">×</button><p class="section-kicker">ACCESO DOCENTE</p><h2 id="teacher-access-title">Panel de acceso docente</h2><p>Este acceso organiza la consulta durante la exposición. En una página estática no protege las respuestas de forma criptográfica.</p><label for="teacher-key">Clave</label><div class="password-row"><input id="teacher-key" type="password" inputmode="numeric" autocomplete="off"><button id="toggle-teacher-key" type="button">Mostrar</button></div><p id="teacher-access-feedback" class="feedback" aria-live="polite"></p><div class="modal-actions"><button id="cancel-teacher-access" type="button">Cancelar</button><button id="enter-teacher-panel" type="button">Ingresar</button></div></dialog>
 <dialog id="teacher-panel-dialog" class="teacher-dialog teacher-panel" aria-labelledby="teacher-panel-title"><button class="close-dialog" id="logout-teacher" type="button" aria-label="Cerrar sesión docente">×</button><p class="section-kicker">ACCESO AUTORIZADO – PANEL DOCENTE</p><h2 id="teacher-panel-title">Soluciones y procedimientos</h2><div class="teacher-tabs"><button data-teacher-solution="1">Reto 1</button><button data-teacher-solution="2">Reto 2</button><button data-teacher-solution="3">Reto 3</button><button data-teacher-solution="4">Reto 4</button></div><section class="teacher-solution active" data-teacher-solution-panel="1"><h3>1. Código secreto</h3><p>A = 2C; B = C + 1; A + B + C = 17.</p><ol><li>2C + (C + 1) + C = 17</li><li>4C + 1 = 17; 4C = 16; C = 4</li><li>B = 5 y A = 8. Código: <strong>854</strong>.</li></ol><p>Comprobación: 8 = 2 × 4; 5 = 4 + 1; 8 + 5 + 4 = 17. Es única porque las ecuaciones determinan un solo valor para C.</p><em>Capacidad: resolver relaciones entre variables y comprobar condiciones.</em></section><section class="teacher-solution" data-teacher-solution-panel="2" hidden><h3>2. Patrón</h3><p>2, 6, 12, 20, 30, 42 corresponden a 1×2, 2×3, 3×4, 4×5, 5×6, 6×7. 42 vale bajo esta regla; una secuencia finita puede admitir otras.</p><em>Capacidad: reconocer y justificar una regularidad.</em></section><section class="teacher-solution" data-teacher-solution-panel="3" hidden><h3>3. Suma de impares</h3><p>(2m + 1) + (2n + 1) = 2m + 2n + 2 = 2(m + n + 1). Es múltiplo de 2; por tanto, es par.</p><em>Capacidad: demostrar una afirmación general.</em></section><section class="teacher-solution" data-teacher-solution-panel="4" hidden><h3>4. Contraejemplo</h3><p>Los ejemplos no prueban una propiedad universal. Para n = 41: n² + n + 41 = 41² + 41 + 41 = 1681 + 82 = 41 × 43 = 1763, compuesto.</p><em>Capacidad: usar un contraejemplo para refutar una afirmación.</em></section><button id="teacher-logout-button" type="button">Cerrar sesión docente</button></dialog><section class="section container reflection" id="reflexiona"><div><p class="section-kicker">COMPONENTE 5 · CONCLUSIÓN REFLEXIVA</p><h2>Demostrar es comunicar una razón.</h2><p>Razonar antes de responder permite distinguir una conjetura de una conclusión fundamentada. Comprobar ejemplos ayuda a explorar; demostrar explica por qué algo vale en todos los casos.</p><p>La argumentación comunica las ideas y la demostración justifica su validez. Como futuros docentes, es importante enseñar a justificar, no solo a repetir procedimientos.</p><blockquote>La matemática no consiste únicamente en encontrar respuestas, sino en comprender cómo y por qué llegamos a ellas. El razonamiento nos permite analizar situaciones, la argumentación nos ayuda a explicar nuestras ideas y la demostración nos permite justificar la validez de nuestras conclusiones. Como futuros docentes, tenemos la responsabilidad de promover una enseñanza que no se limite a repetir procedimientos, sino que motive a los estudiantes a pensar, cuestionar, argumentar y construir conocimientos matemáticos.</blockquote></div><form id="reflection-form"><label for="reflection">¿Qué es más importante: encontrar una respuesta o poder demostrar por qué es correcta?</label><textarea id="reflection" rows="5" maxlength="600" placeholder="Escribe una reflexión breve…"></textarea><button class="primary-button" type="submit">Guardar mi reflexión</button><p id="reflection-message" aria-live="polite"></p></form></section>
